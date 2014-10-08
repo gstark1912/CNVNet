@@ -1,0 +1,206 @@
+﻿@{
+    ViewBag.Title = "Administración de Roles";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script>
+
+    $(document).ready(function () {
+        btnRefreshGrid();
+    });
+    function btnLoadGrid() {
+        var filter = $('#txtDesc').val();
+        if (filter != "") {
+            loadGrid(filter);
+        }
+        else
+            ShowAlert("Ingrese parámetro de búsqueda.");
+    }
+
+    function btnRefreshGrid() {
+        $("#txtDesc").val('');
+        var filter = "";
+        loadGrid(filter);
+    };
+
+    function loadGrid(filter) {
+        $('#jqgridRoles').jqGrid('GridUnload');
+        $("#jqgridRoles").jqGrid({
+            url: '@Url.Action("SearchRoles","RolesAdmin", new {Area="Security"})',
+            datatype: "json",
+            mtype: 'POST',
+            colNames: ['IDRol', 'Descripción'],
+            colModel: [
+                { name: 'Id', index: 'Id', sortable: false, key: true, hidden: true, editable: true },
+                { name: 'Description', index: 'Description', width: 100 }
+            ],
+            postData: {
+                desc: filter
+            },
+            loadComplete: function (data) {
+                ExecuteMessagesSuccess(data);
+            },
+            hidegrid: false,
+            rowNum: 10,
+            rowList: [10, 20, 30],
+            pager: jQuery('#pagerRoles'),
+            sortname: "Name",
+            viewrecords: true,
+            sortorder: "asc",
+            caption: " ",
+            width: "100%",
+            autowidth: true,
+        });
+
+        $('#jqgridRoles').jqGrid('navGrid', '#pagerRoles',
+                { add: false, del: false, edit: false, search: false },
+                {}
+           );
+    };
+
+    function insertRole() {
+        $.MDmessage({
+            messageType: "popup",
+            name: "insertRole_popup",
+            btnok: false,
+            title: "Nuevo Rol",
+            width: 30,
+            content: '@Url.Action("_RoleEdit", "RolesAdmin")',
+            buttons: {
+                "Cancelar": function () { closePopup(closeMessage, 'insertRole_popup'); },
+                "Guardar": function () {
+                    var form = getRoleData();
+                    if (form != false) {
+                        ajaxCall({
+                            data: form,
+                            url: '@Url.Action("InsertRole")',
+                            success: function (data) {
+                                if (data == true) {
+                                    closeMessage("insertRole_popup");
+                                    btnRefreshGrid();
+                                }
+                            }
+                        });
+                    }
+                }
+            }
+        });
+    };
+
+    function updateRole() {
+        var rowId = $("#jqgridRoles").jqGrid('getGridParam', 'selrow');
+        if (rowId != null) {
+            $.MDmessage({
+                messageType: "popup",
+                name: "updateRole_popup",
+                btnok: false,
+                title: "Editar Rol",
+                width: 30,
+                content: '@Url.Action("_RoleEdit", "RolesAdmin")?id=' + rowId,
+                buttons: {
+                    "Cancelar": function () { closePopup(closeMessage, 'updateRole_popup'); },
+                    "Guardar": function () {
+                        var form = getRoleData();
+                        if (form != false) {
+                            ajaxCall({
+                                data: form,
+                                url: '@Url.Action("UpdateRole")',
+                                success: function (data) {
+                                    if (data == true) {
+                                        closeMessage("updateRole_popup");
+                                        btnRefreshGrid();
+                                    }
+                                }
+                            });
+                        }
+                    }
+                }
+            });
+        }
+        else
+            ShowAlert("Seleccione el registro a editar");
+    };
+
+    function tryDeleteRole() {
+        var rowId = $("#jqgridRoles").jqGrid('getGridParam', 'selrow');
+        if (rowId != null) {
+            ajaxCall({
+                url: '@Url.Action("CanDeleteRole")?id=' + rowId,
+                data: {},
+                success: function (data) {
+                    if (data == true) deleteRole(rowId);
+                }
+            });
+        }
+        else
+            ShowAlert("Seleccione el registro a eliminar");
+    };
+
+    function deleteRole(rowId) {
+        $.MDmessage({
+            messageType: "info",
+            name: "deleteRole_popup",
+            btnok: false,
+            message: '¿Desea eliminar el registro seleccionado?',
+            title: 'Eliminar Rol',
+            width: 30,
+            buttons: {
+                "Cancelar": function () { closeMessage("deleteRole_popup") },
+                "Eliminar": function () {
+                    ajaxCall({
+                        url: '@Url.Action("DeleteRole")?id=' + rowId,
+                        data: {},
+                        success: function (data) {
+                            if (data == true) {
+                                closeMessage("deleteRole_popup");
+                                btnRefreshGrid();
+                            }
+                        }
+                    });
+                }
+            }
+        });
+    };
+
+    function assignActions() {
+        var rowId = $("#jqgridRoles").jqGrid('getGridParam', 'selrow');
+        if (rowId != null) {
+            location.href = '@Url.Action("AssignActions")?id=' + rowId;
+        }
+        else
+            ShowAlert("Debe seleccionar un registro para esta acción");
+    };
+
+</script>
+<h1>@ViewBag.Title</h1>
+<br />
+<div class="row">
+    <div class="col-10">
+        @Html.Label("Nombre")
+        @Html.TextBox("txtDesc")
+    </div>
+    <div class="col-1">
+        <br />
+        <button id="btnLoadGrid" onclick="btnLoadGrid()">Buscar</button>
+    </div>
+    <div class="col-1">
+        <br />
+        <button id="btnRefreshGrid" onclick="btnRefreshGrid()">Refrescar</button>
+    </div>
+</div>
+<div class="row">
+    <div class="col-12">
+        <div id="divResults" style="padding-bottom: 10px">
+            <div id="grid" align="center">
+                <table id="jqgridRoles"></table>
+                <div id="pagerRoles">
+                </div>
+            </div>
+        </div>
+
+        @Html.ActionLink("Cerrar", "Index", "Home", new { Area = "" }, new { @class = "btn_secundario btn-right" })
+        <a class='btn_secundario' href="javascript:insertRole()">Nuevo</a>
+        <a class='btn_secundario' href="javascript:updateRole()">Editar</a>
+        <a class='btn_secundario' href="javascript:tryDeleteRole()">Eliminar</a>
+        <a class='btn_secundario' href="javascript:assignActions()">Asignar Acción</a>
+    </div>
+</div>

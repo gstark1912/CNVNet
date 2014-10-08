@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="519c8de2f87344fdb37706df76fc45ed" Name="Diagram1" ZoomLevel="86">
+        <EntityTypeShape EntityType="KATHIECentralModel.Dia" Width="1.5" PointX="0.75" PointY="4.875" />
+        <EntityTypeShape EntityType="KATHIECentralModel.Disponibilidad" Width="1.5" PointX="0.75" PointY="8.125" />
+        <EntityTypeShape EntityType="KATHIECentralModel.Estado" Width="1.5" PointX="1.5" PointY="24.625" />
+        <EntityTypeShape EntityType="KATHIECentralModel.Evento" Width="1.5" PointX="1.5" PointY="1" />
+        <EntityTypeShape EntityType="KATHIECentralModel.EventoUsuario" Width="1.5" PointX="3.75" PointY="1.375" />
+        <EntityTypeShape EntityType="KATHIECentralModel.EventoUsuarioHorario" Width="1.5" PointX="6" PointY="8" />
+        <EntityTypeShape EntityType="KATHIECentralModel.Usuario" Width="1.5" PointX="0.75" PointY="20.25" />
+        <EntityTypeShape EntityType="KATHIECentralModel.UsuarioHorario" Width="1.5" PointX="3" PointY="7.875" />
+        <AssociationConnector Association="KATHIECentralModel.FK_UsuarioHorario_Dia" />
+        <AssociationConnector Association="KATHIECentralModel.FK_EventoUsuarioHorario_Disponibilidad1" />
+        <AssociationConnector Association="KATHIECentralModel.FK_EventoUsuarioHorario_Disponibilidad10" />
+        <AssociationConnector Association="KATHIECentralModel.FK_EventoUsuarioHorario_Disponibilidad11" />
+        <AssociationConnector Association="KATHIECentralModel.FK_EventoUsuarioHorario_Disponibilidad12" />
+        <AssociationConnector Association="KATHIECentralModel.FK_EventoUsuarioHorario_Disponibilidad13" />
+        <AssociationConnector Association="KATHIECentralModel.FK_EventoUsuarioHorario_Disponibilidad14" />
+        <AssociationConnector Association="KATHIECentralModel.FK_EventoUsuarioHorario_Disponibilidad15" />
+        <AssociationConnector Association="KATHIECentralModel.FK_EventoUsuarioHorario_Disponibilidad16" />
+        <AssociationConnector Association="KATHIECentralModel.FK_EventoUsuarioHorario_Disponibilidad17" />
+        <AssociationConnector Association="KATHIECentralModel.FK_EventoUsuarioHorario_Disponibilidad18" />
+        <AssociationConnector Association="KATHIECentralModel.FK_EventoUsuarioHorario_Disponibilidad19" />
+        <AssociationConnector Association="KATHIECentralModel.FK_EventoUsuarioHorario_Disponibilidad2" />
+        <AssociationConnector Association="KATHIECentralModel.FK_EventoUsuarioHorario_Disponibilidad20" />
+        <AssociationConnector Association="KATHIECentralModel.FK_EventoUsuarioHorario_Disponibilidad21" />
+        <AssociationConnector Association="KATHIECentralModel.FK_EventoUsuarioHorario_Disponibilidad22" />
+        <AssociationConnector Association="KATHIECentralModel.FK_EventoUsuarioHorario_Disponibilidad23" />
+        <AssociationConnector Association="KATHIECentralModel.FK_EventoUsuarioHorario_Disponibilidad24" />
+        <AssociationConnector Association="KATHIECentralModel.FK_EventoUsuarioHorario_Disponibilidad3" />
+        <AssociationConnector Association="KATHIECentralModel.FK_EventoUsuarioHorario_Disponibilidad4" />
+        <AssociationConnector Association="KATHIECentralModel.FK_EventoUsuarioHorario_Disponibilidad5" />
+        <AssociationConnector Association="KATHIECentralModel.FK_EventoUsuarioHorario_Disponibilidad6" />
+        <AssociationConnector Association="KATHIECentralModel.FK_EventoUsuarioHorario_Disponibilidad7" />
+        <AssociationConnector Association="KATHIECentralModel.FK_EventoUsuarioHorario_Disponibilidad8" />
+        <AssociationConnector Association="KATHIECentralModel.FK_EventoUsuarioHorario_Disponibilidad9" />
+        <AssociationConnector Association="KATHIECentralModel.FK_UsuarioHorario_Disponibilidad1" />
+        <AssociationConnector Association="KATHIECentralModel.FK_UsuarioHorario_Disponibilidad10" />
+        <AssociationConnector Association="KATHIECentralModel.FK_UsuarioHorario_Disponibilidad11" />
+        <AssociationConnector Association="KATHIECentralModel.FK_UsuarioHorario_Disponibilidad12" />
+        <AssociationConnector Association="KATHIECentralModel.FK_UsuarioHorario_Disponibilidad13" />
+        <AssociationConnector Association="KATHIECentralModel.FK_UsuarioHorario_Disponibilidad14" />
+        <AssociationConnector Association="KATHIECentralModel.FK_UsuarioHorario_Disponibilidad15" />
+        <AssociationConnector Association="KATHIECentralModel.FK_UsuarioHorario_Disponibilidad16" />
+        <AssociationConnector Association="KATHIECentralModel.FK_UsuarioHorario_Disponibilidad17" />
+        <AssociationConnector Association="KATHIECentralModel.FK_UsuarioHorario_Disponibilidad18" />
+        <AssociationConnector Association="KATHIECentralModel.FK_UsuarioHorario_Disponibilidad19" />
+        <AssociationConnector Association="KATHIECentralModel.FK_UsuarioHorario_Disponibilidad2" />
+        <AssociationConnector Association="KATHIECentralModel.FK_UsuarioHorario_Disponibilidad20" />
+        <AssociationConnector Association="KATHIECentralModel.FK_UsuarioHorario_Disponibilidad21" />
+        <AssociationConnector Association="KATHIECentralModel.FK_UsuarioHorario_Disponibilidad22" />
+        <AssociationConnector Association="KATHIECentralModel.FK_UsuarioHorario_Disponibilidad23" />
+        <AssociationConnector Association="KATHIECentralModel.FK_UsuarioHorario_Disponibilidad24" />
+        <AssociationConnector Association="KATHIECentralModel.FK_UsuarioHorario_Disponibilidad3" />
+        <AssociationConnector Association="KATHIECentralModel.FK_UsuarioHorario_Disponibilidad4" />
+        <AssociationConnector Association="KATHIECentralModel.FK_UsuarioHorario_Disponibilidad5" />
+        <AssociationConnector Association="KATHIECentralModel.FK_UsuarioHorario_Disponibilidad6" />
+        <AssociationConnector Association="KATHIECentralModel.FK_UsuarioHorario_Disponibilidad7" />
+        <AssociationConnector Association="KATHIECentralModel.FK_UsuarioHorario_Disponibilidad8" />
+        <AssociationConnector Association="KATHIECentralModel.FK_UsuarioHorario_Disponibilidad9" />
+        <AssociationConnector Association="KATHIECentralModel.FK_Evento_Estado" />
+        <AssociationConnector Association="KATHIECentralModel.FK_Evento_Usuario" />
+        <AssociationConnector Association="KATHIECentralModel.FK_EventoUsuario_Evento" />
+        <AssociationConnector Association="KATHIECentralModel.FK_EventoUsuario_Usuario" />
+        <AssociationConnector Association="KATHIECentralModel.FK_EventoUsuarioHorario_EventoUsuario" />
+        <AssociationConnector Association="KATHIECentralModel.FK_UsuarioHorario_Usuario" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

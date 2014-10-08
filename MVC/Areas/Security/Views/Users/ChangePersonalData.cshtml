@@ -1,0 +1,87 @@
+﻿@model MVC.Areas.Security.Models.UsersAdminViewModel
+@{
+    ViewBag.Title = "Cambiar datos personales";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script>
+    var hasDataChanged = false;
+    $(document).ready(function () {
+        $(window).bind('beforeunload', confirmLeave);
+        $("#personalDataForm input").change(function () {
+            hasDataChanged = true;
+        });
+    });
+
+    function confirmLeave() {
+        if (hasDataChanged) {
+            return "Se perderán los cambios realizados, ¿Desea continuar?";
+        }
+    }
+
+    function getUserData() {
+        var form = $("#personalDataForm");
+        if (form.valid())
+            return form.serializeJSON();
+        else
+            return false;
+    };
+
+    function saveUserData() {
+        var form = getUserData();
+        if (form != false) {
+            ajaxCall({
+                url: '@Url.Action("SavePersonalData", "Users")',
+                data: form,
+                success: function (data) {
+                    if (data == true) {
+                        hasDataChanged = false;
+                        location.href = '@Url.Action("Index","Home",new {Area=""})'
+                    }
+                }
+            });
+        };
+    };
+
+</script>
+<br />
+<h1>@ViewBag.Title</h1>
+@using (Html.BeginForm("", "", FormMethod.Post, new { id = "personalDataForm" }))
+{
+    <div class="row">
+        <div class="col-12">
+            <form id="userForm">
+                <div class="row">
+                    <div class="col-12">
+                        @Html.LabelFor(m => m.UserName)
+                        @Html.TextBoxFor(m => m.UserName)
+                        @Html.ValidationMessageFor(m => m.UserName)
+                    </div>
+                    <div class="col-12">
+                        @Html.LabelFor(m => m.Email)
+                        @Html.TextBoxFor(m => m.Email)
+                        @Html.ValidationMessageFor(m => m.Email)
+                    </div>
+                    <div class="col-12">
+                        @Html.LabelFor(m => m.Name)
+                        @Html.TextBoxFor(m => m.Name)
+                        @Html.ValidationMessageFor(m => m.Name)
+                    </div>
+                    <div class="col-12">
+                        @Html.LabelFor(m => m.LastName)
+                        @Html.TextBoxFor(m => m.LastName)
+                        @Html.ValidationMessageFor(m => m.LastName)
+                    </div>
+                    <div class="col-12">
+                        @Html.LabelFor(m => m.PhoneNumber)
+                        @Html.TextBoxFor(m => m.PhoneNumber)
+                        @Html.ValidationMessageFor(m => m.PhoneNumber)
+                    </div>
+                    @Html.HiddenFor(m => m.Id)
+                </div>
+            </form>
+            @Html.ActionLink("Volver", "Index", "Home", new { Area = "" }, new { @class = "btn_secundario btn-right" })
+            <a class='btn_secundario btn-right' href="javascript:saveUserData()">Guardar</a>
+        </div>
+    </div>
+}

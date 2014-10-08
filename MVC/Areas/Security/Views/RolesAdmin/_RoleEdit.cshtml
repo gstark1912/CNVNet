@@ -1,0 +1,59 @@
+﻿@model MVC.Areas.Security.Models.RoleViewModel
+
+<script>
+    var changesPopup = false;
+
+    $(document).ready(function () {
+        var currForm = $("#roleForm");
+        currForm.removeData("validator");
+        currForm.removeData("unobtrusiveValidation");
+        $.validator.unobtrusive.parse(currForm);
+        $("#userForm input").change(function () {
+            changesPopup = true;
+        });
+    });
+
+    function getRoleData() {
+        var form = $("#roleForm");
+        if (form.valid())
+            return form.serializeJSON();
+        else
+            return false;
+    };
+
+    function closePopup(exitFn, popupname) {
+        if (!changesPopup)
+            exitFn(popupname);
+        else {
+            $.MDmessage({
+                messageType: "info",
+                name: "closepopupquestion_popup",
+                btnok: false,
+                message: '<p class="mdm_text">Se perderán cambios realizados, ¿Desea continuar?</p>',
+                title: 'Atención!',
+                width: 30,
+                buttons: {
+                    "No": function () { closeMessage("closepopupquestion_popup") },
+                    "Si": function () {
+                        closeMessage("closepopupquestion_popup");
+                        exitFn(popupname);
+                    }
+                }
+            });
+        }
+    };
+
+</script>
+<br />
+<form id="roleForm">
+    <div class="row">
+        <div class="col-12">
+            @Html.LabelFor(m => m.Name)
+            @Html.TextBoxFor(m => m.Name)
+            @Html.ValidationMessageFor(m => m.Name)
+        </div>
+        @Html.HiddenFor(m => m.Id)
+    </div>
+</form>
+@*@Html.ActionLink("Cerrar", "Index", "Home", new { Area = "" }, new { @class = "btn_secundario btn-right", onclick = "javascript:closePopUp();return false;" })
+    <a class='btn_secundario' href="javascript:save()">Guardar</a>*@

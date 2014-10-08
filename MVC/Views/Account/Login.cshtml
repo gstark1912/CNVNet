@@ -1,0 +1,54 @@
+@model MVC.Security.Models.LoginViewModel
+
+@{
+    ViewBag.Title = "Ingreso al Sistema";
+}
+
+<div class="row">
+    <div class="col-12">
+        <h1>@ViewBag.Title</h1>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-4 separation">
+        @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+        {
+            @Html.AntiForgeryToken()
+
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+            @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
+            @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+
+            @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
+            @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+
+            @Html.LabelFor(m => m.RememberMe)
+            <text>&nbsp;&nbsp;</text>
+            @Html.CheckBoxFor(m => m.RememberMe)
+
+            <input type="submit" value="Ingresar" class="btn btn-default" /><br /><br />
+
+            @Html.ActionLink("Registrarse", "Register")
+            <text>&nbsp;&nbsp;</text>
+            @Html.ActionLink("¿Olvidó su contraseña?", "ForgotPassword")
+        }
+    </div>
+    <div class="col-8 separation">
+        <h2>¿Qué es MVC?</h2>
+        <p>
+            El éxito reside en la simpleza: Simple, sencillo y rápido. Aplicaciones pequeñas y soluciones a gran escala. De código abierto y con toda la documentación necesaria. Ejemplos y herramientas para ayudarte en tu desarrollo.
+        </p>
+        <p>
+            El mismo equipo que lo desarrolló y mantiene es quien brinda el soporte y las capacitaciones. El código se documenta a medida que se desarrolla y constantemente se incluye documentación complementaria, ayuda, laboratorios, manuales y ejemplos sobre como utilizar MVC.
+        </p>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

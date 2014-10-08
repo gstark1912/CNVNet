@@ -1,0 +1,163 @@
+﻿@model MVC.Areas.Security.Models.ConfigurationViewModel
+@{
+    ViewBag.Title = "Configuración General";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script>
+    var hasDataChanged = false;
+    $(document).ready(function () {
+        $(window).bind('beforeunload', confirmLeave);
+        $("#configurationData input").change(function () {
+            hasDataChanged = true;
+        });
+    });
+
+    function confirmLeave() {
+        if (hasDataChanged) {
+            return "Se perderán los cambios realizados, ¿Desea continuar?";
+        }
+    }
+
+    function saveConfiguration() {
+        var form = $("#configurationData");
+        if (form.valid()) {
+            ajaxCall({
+                url: '@Url.Action("Save", "ConfigurationAdmin")',
+                data: form.serialize(),
+                success: function (data) {
+                    if (data) {
+                        hasDataChanged = false;
+                        location.href = '@Url.Action("Index", "Home", new {Area="" })';
+                    }
+                }
+            });
+        }
+    }
+
+</script>
+
+<div class="row">
+    <div class="col-12">
+        <h1>@ViewBag.Title</h1>
+    </div>
+</div>
+
+@using (Html.BeginForm("Save", "ConfigurationAdmin", FormMethod.Post, new { id = "configurationData" }))
+{
+    <div class="row">
+        <div class="col-6">
+            <div class="row">
+                <div class="col-12">
+                    <h2>Contraseña</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6">
+                    @Html.LabelFor(m => m.ExpirationTimeDays)
+                    @Html.TextBoxFor(m => m.ExpirationTimeDays)
+                    @Html.ValidationMessageFor(m => m.ExpirationTimeDays)
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6">
+                    @Html.LabelFor(m => m.PasswordRequiredLength)
+                    @Html.TextBoxFor(m => m.PasswordRequiredLength)
+                    @Html.ValidationMessageFor(m => m.PasswordRequiredLength)
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6">
+                    @Html.LabelFor(m => m.PasswordRepeat)
+                    @Html.TextBoxFor(m => m.PasswordRepeat)
+                    @Html.ValidationMessageFor(m => m.PasswordRepeat)
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6">
+                    @Html.LabelFor(m => m.MaxFailedAccessCount)
+                    @Html.TextBoxFor(m => m.MaxFailedAccessCount)
+                    @Html.ValidationMessageFor(m => m.MaxFailedAccessCount)
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6">
+                    @Html.CheckBoxFor(m => m.PasswordRequireDigit)
+                    @Html.ValidationMessageFor(m => m.PasswordRequireDigit)
+                    @Html.LabelFor(m => m.PasswordRequireDigit)
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6">
+                    @Html.CheckBoxFor(m => m.PasswordRequireLowercase)
+                    @Html.ValidationMessageFor(m => m.PasswordRequireLowercase)
+                    @Html.LabelFor(m => m.PasswordRequireLowercase)
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6">
+                    @Html.CheckBoxFor(m => m.PasswordRequireUppercase)
+                    @Html.ValidationMessageFor(m => m.PasswordRequireUppercase)
+                    @Html.LabelFor(m => m.PasswordRequireUppercase)
+                </div>
+            </div>
+        </div>
+        <div class="col-6">
+            <div class="row">
+                <div class="col-12">
+                    <h2>Mail de Confirmación de Registro</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6">
+                    @Html.LabelFor(m => m.CredentialUserName)
+                    @Html.TextBoxFor(m => m.CredentialUserName)
+                    @Html.ValidationMessageFor(m => m.CredentialUserName)<br />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6">
+                    @Html.LabelFor(m => m.EmailPassword)
+                    @Html.TextBoxFor(m => m.EmailPassword, new { type = "password" })
+                    @Html.ValidationMessageFor(m => m.EmailPassword)<br />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6">
+                    @Html.LabelFor(m => m.Client)
+                    @Html.TextBoxFor(m => m.Client)
+                    @Html.ValidationMessageFor(m => m.Client)<br />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6">
+                    @Html.LabelFor(m => m.Port)
+                    @Html.TextBoxFor(m => m.Port)
+                    @Html.ValidationMessageFor(m => m.Port)<br />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6">
+                    @Html.LabelFor(m => m.EnableSsl)
+                    @Html.CheckBoxFor(m => m.EnableSsl)
+                    @Html.ValidationMessageFor(m => m.EnableSsl)<br />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6">
+                    @Html.LabelFor(m => m.DefaultCredentials)
+                    @Html.CheckBoxFor(m => m.DefaultCredentials)
+                    @Html.ValidationMessageFor(m => m.DefaultCredentials)<br />
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-6"></div>
+        <div class="col-6">
+            @Html.ActionLink("Cancelar", "Index", "Home", new { Area = "" }, new { @class = "btn_secundario btn-right" })
+            <a class='button_ui' href="#" onclick="saveConfiguration(); return false;" id="btn_add">Guardar</a>
+        </div>
+    </div>
+
+}

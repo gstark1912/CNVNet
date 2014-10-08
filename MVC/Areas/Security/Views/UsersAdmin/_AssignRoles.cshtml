@@ -1,0 +1,87 @@
+﻿@model MVC.Areas.Security.Models.AssignRolesViewModel
+
+<script>
+
+    $(document).ready(function () {
+        var currForm = $("#assignrolesForm");
+        currForm.removeData("validator");
+        currForm.removeData("unobtrusiveValidation");
+        $.validator.unobtrusive.parse(currForm);
+
+        LoadGrid();
+        @foreach (Microsoft.AspNet.Identity.EntityFramework.IdentityRole role in Model.Roles.OrderByDescending(r=>r.Name))
+        {
+                <text>
+        $("#assignusersGrid").jqGrid('addRow', {
+            rowID: '@role.Id',
+            initdata: {
+                ID: '@role.Id',
+                Description: '@role.Name'
+
+            }
+        });
+        jQuery("#assignusersGrid").saveRow('@role.Id');
+
+        </text>
+        }
+        $("#assignusersGrid").resetSelection();
+        @foreach (Microsoft.AspNet.Identity.EntityFramework.IdentityRole role in Model.Roles)
+        {
+            if (Model.RolesInUser.Contains(role.Id))
+            {
+                <text> $("#assignusersGrid").setSelection('@role.Id'); </text>
+            }
+        }
+    });
+
+    function getAssignedRoles() {
+        var form = $("#assignrolesForm");
+        if (form.valid()) {
+            var keys = $("#assignusersGrid").jqGrid('getGridParam', 'selarrrow');
+            var result = form.serializeJSON();
+            result.RolesInUser = keys;
+            return result;
+        }
+        else
+            return false;
+    };
+
+    function LoadGrid() {
+        $('#assignusersGrid').jqGrid('GridUnload');
+        $("#assignusersGrid").jqGrid({
+            url: '@Url.Action("SearchMedicinesInSegment","Segments")',
+            datatype: "local",
+            colNames: ['ID', 'Descripcion'],
+            colModel: [
+                 { name: 'ID', index: 'ID', sortable: false, key: true, hidden: true, editable: true },
+                 { name: "Description", index: "Description", width: "100" }
+            ],
+            hidegrid: false,
+            multiselect: true,
+            rowNum: 10,
+            rowList: [10, 20, 30],
+            sortname: 'Description',
+            viewrecords: true,
+            sortorder: "asc",
+            caption: "Roles disponibles",
+            autowidth: true,
+            scrollOffset: 0,
+            height: 235,
+        });
+    };
+
+</script>
+<br />
+<form id="assignrolesForm">
+    <h2>Roles Disponibles</h2>
+    <br />
+    <div class="row">
+        <div id="divassignusersGrid" style="padding-bottom: 10px">
+            <div id="grid" align="center">
+                <table id="assignusersGrid"></table>
+            </div>
+        </div>
+        @Html.HiddenFor(m => m.Id)
+        @Html.HiddenFor(m => m.RolesInUser)
+    </div>
+</form>

@@ -1,0 +1,79 @@
+﻿@model MVC.Areas.Security.Models.UsersAdminViewModel
+
+<script>
+    var changesPopup = false;
+
+    $(document).ready(function () {
+        var currForm = $("#userForm");
+        currForm.removeData("validator");
+        currForm.removeData("unobtrusiveValidation");
+        $.validator.unobtrusive.parse(currForm);
+        $("#userForm input").change(function () {            
+            changesPopup = true;
+        });
+    });
+
+    function getUserData() {
+        var form = $("#userForm");
+        if (form.valid()) {
+            changesPopup = true;
+            return form.serializeJSON();
+        }
+        else
+            return false;
+    };
+
+    function closePopup(exitFn, popupname) {
+        if (!changesPopup)
+            exitFn(popupname);
+        else {
+            $.MDmessage({
+                messageType: "info",
+                name: "closepopupquestion_popup",
+                btnok: false,
+                message: '<p class="mdm_text">Se perderán cambios realizados, ¿Desea continuar?</p>',
+                title: 'Atención!',
+                width: 30,
+                buttons: {
+                    "No": function () { closeMessage("closepopupquestion_popup") },
+                    "Si": function () {
+                        closeMessage("closepopupquestion_popup");
+                        exitFn(popupname);
+                    }
+                }
+            });
+        }
+    };
+
+</script>
+<br />
+<form id="userForm">
+    <div class="row">
+        <div class="col-12">
+            @Html.LabelFor(m => m.UserName)
+            @Html.TextBoxFor(m => m.UserName)
+            @Html.ValidationMessageFor(m => m.UserName)
+        </div>
+        <div class="col-12">
+            @Html.LabelFor(m => m.Email)
+            @Html.TextBoxFor(m => m.Email)
+            @Html.ValidationMessageFor(m => m.Email)
+        </div>
+        <div class="col-12">
+            @Html.LabelFor(m => m.Name)
+            @Html.TextBoxFor(m => m.Name)
+            @Html.ValidationMessageFor(m => m.Name)
+        </div>
+        <div class="col-12">
+            @Html.LabelFor(m => m.LastName)
+            @Html.TextBoxFor(m => m.LastName)
+            @Html.ValidationMessageFor(m => m.LastName)
+        </div>
+        <div class="col-12">
+            @Html.LabelFor(m => m.PhoneNumber)
+            @Html.TextBoxFor(m => m.PhoneNumber)
+            @Html.ValidationMessageFor(m => m.PhoneNumber)
+        </div>
+        @Html.HiddenFor(m => m.Id)
+    </div>
+</form>

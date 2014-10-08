@@ -1,0 +1,23 @@
+﻿@model IEnumerable<MVC.Security.Models.MenuItem>
+
+
+@ShowTree(Model.Where(e => e.IdParent == 0).OrderBy(e => e.Order))
+
+@helper ShowTree(IEnumerable<MVC.Security.Models.MenuItem> Menues)
+{
+    <ul>
+        @foreach (var element in Menues)
+        {
+            <li>
+                @Html.ActionLink(element.Name, element.Action, element.Controller, new { Area = element.Area }, new { ID = element.Id })   
+            @{
+            var children = Model.Where(e => e.IdParent == element.Id).OrderBy(e => e.Order).ToList(); ;
+            if (children.Count() > 0)
+            {
+                @ShowTree(children)
+            }
+            }
+        </li>
+        }
+    </ul>
+}

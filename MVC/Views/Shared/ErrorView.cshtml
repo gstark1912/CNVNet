@@ -1,0 +1,9 @@
+﻿@model MVC.Security.Models.HFXException
+
+@{
+    ViewBag.Title = "ErrorView";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@Html.Partial("_ExceptionMessage", Model)
+

@@ -1,0 +1,2287 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="KATHIECentralModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Dia">
+          <Key>
+            <PropertyRef Name="IDDia" />
+          </Key>
+          <Property Name="IDDia" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Disponibilidad">
+          <Key>
+            <PropertyRef Name="IDDisponibilidad" />
+          </Key>
+          <Property Name="IDDisponibilidad" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Estado">
+          <Key>
+            <PropertyRef Name="IDEstado" />
+          </Key>
+          <Property Name="IDEstado" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Evento">
+          <Key>
+            <PropertyRef Name="IDEvento" />
+          </Key>
+          <Property Name="IDEvento" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Titulo" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Comentarios" Type="varchar" MaxLength="80" Nullable="false" />
+          <Property Name="FechaDesde" Type="date" Nullable="false" />
+          <Property Name="FechaHasta" Type="date" Nullable="false" />
+          <Property Name="IDEstado" Type="int" Nullable="false" />
+          <Property Name="IDUsuario" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EventoUsuario">
+          <Key>
+            <PropertyRef Name="IDEventoUsuario" />
+          </Key>
+          <Property Name="IDEventoUsuario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IDEvento" Type="int" Nullable="false" />
+          <Property Name="IDUsuario" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EventoUsuarioHorario">
+          <Key>
+            <PropertyRef Name="IDEventoUsuarioHorario" />
+          </Key>
+          <Property Name="IDEventoUsuarioHorario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IDEventoUsuario" Type="int" Nullable="false" />
+          <Property Name="Dia" Type="date" Nullable="false" />
+          <Property Name="Hour_1" Type="int" Nullable="false" />
+          <Property Name="Hour_2" Type="int" Nullable="false" />
+          <Property Name="Hour_3" Type="int" Nullable="false" />
+          <Property Name="Hour_4" Type="int" Nullable="false" />
+          <Property Name="Hour_5" Type="int" Nullable="false" />
+          <Property Name="Hour_6" Type="int" Nullable="false" />
+          <Property Name="Hour_7" Type="int" Nullable="false" />
+          <Property Name="Hour_8" Type="int" Nullable="false" />
+          <Property Name="Hour_9" Type="int" Nullable="false" />
+          <Property Name="Hour_10" Type="int" Nullable="false" />
+          <Property Name="Hour_11" Type="int" Nullable="false" />
+          <Property Name="Hour_12" Type="int" Nullable="false" />
+          <Property Name="Hour_13" Type="int" Nullable="false" />
+          <Property Name="Hour_14" Type="int" Nullable="false" />
+          <Property Name="Hour_15" Type="int" Nullable="false" />
+          <Property Name="Hour_16" Type="int" Nullable="false" />
+          <Property Name="Hour_17" Type="int" Nullable="false" />
+          <Property Name="Hour_18" Type="int" Nullable="false" />
+          <Property Name="Hour_19" Type="int" Nullable="false" />
+          <Property Name="Hour_20" Type="int" Nullable="false" />
+          <Property Name="Hour_21" Type="int" Nullable="false" />
+          <Property Name="Hour_22" Type="int" Nullable="false" />
+          <Property Name="Hour_23" Type="int" Nullable="false" />
+          <Property Name="Hour_24" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="IDUsuario" />
+          </Key>
+          <Property Name="IDUsuario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Username" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="FirstName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="LastName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="20" />
+          <Property Name="Email" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UsuarioHorario">
+          <Key>
+            <PropertyRef Name="IDUsuarioHorario" />
+          </Key>
+          <Property Name="IDUsuarioHorario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IDUsuario" Type="int" Nullable="false" />
+          <Property Name="IDDia" Type="int" Nullable="false" />
+          <Property Name="Hour_1" Type="int" Nullable="false" />
+          <Property Name="Hour_2" Type="int" Nullable="false" />
+          <Property Name="Hour_3" Type="int" Nullable="false" />
+          <Property Name="Hour_4" Type="int" Nullable="false" />
+          <Property Name="Hour_5" Type="int" Nullable="false" />
+          <Property Name="Hour_6" Type="int" Nullable="false" />
+          <Property Name="Hour_7" Type="int" Nullable="false" />
+          <Property Name="Hour_8" Type="int" Nullable="false" />
+          <Property Name="Hour_9" Type="int" Nullable="false" />
+          <Property Name="Hour_10" Type="int" Nullable="false" />
+          <Property Name="Hour_11" Type="int" Nullable="false" />
+          <Property Name="Hour_12" Type="int" Nullable="false" />
+          <Property Name="Hour_13" Type="int" Nullable="false" />
+          <Property Name="Hour_14" Type="int" Nullable="false" />
+          <Property Name="Hour_15" Type="int" Nullable="false" />
+          <Property Name="Hour_16" Type="int" Nullable="false" />
+          <Property Name="Hour_17" Type="int" Nullable="false" />
+          <Property Name="Hour_18" Type="int" Nullable="false" />
+          <Property Name="Hour_19" Type="int" Nullable="false" />
+          <Property Name="Hour_20" Type="int" Nullable="false" />
+          <Property Name="Hour_21" Type="int" Nullable="false" />
+          <Property Name="Hour_22" Type="int" Nullable="false" />
+          <Property Name="Hour_23" Type="int" Nullable="false" />
+          <Property Name="Hour_24" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Evento_Estado">
+          <End Role="Estado" Type="Self.Estado" Multiplicity="1" />
+          <End Role="Evento" Type="Self.Evento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estado">
+              <PropertyRef Name="IDEstado" />
+            </Principal>
+            <Dependent Role="Evento">
+              <PropertyRef Name="IDEstado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Evento_Usuario">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="Evento" Type="Self.Evento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="Evento">
+              <PropertyRef Name="IDUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EventoUsuario_Evento">
+          <End Role="Evento" Type="Self.Evento" Multiplicity="1" />
+          <End Role="EventoUsuario" Type="Self.EventoUsuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Evento">
+              <PropertyRef Name="IDEvento" />
+            </Principal>
+            <Dependent Role="EventoUsuario">
+              <PropertyRef Name="IDEvento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EventoUsuario_Usuario">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="EventoUsuario" Type="Self.EventoUsuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="EventoUsuario">
+              <PropertyRef Name="IDUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EventoUsuarioHorario_Disponibilidad1">
+          <End Role="Disponibilidad" Type="Self.Disponibilidad" Multiplicity="1" />
+          <End Role="EventoUsuarioHorario" Type="Self.EventoUsuarioHorario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Disponibilidad">
+              <PropertyRef Name="IDDisponibilidad" />
+            </Principal>
+            <Dependent Role="EventoUsuarioHorario">
+              <PropertyRef Name="Hour_1" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EventoUsuarioHorario_Disponibilidad10">
+          <End Role="Disponibilidad" Type="Self.Disponibilidad" Multiplicity="1" />
+          <End Role="EventoUsuarioHorario" Type="Self.EventoUsuarioHorario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Disponibilidad">
+              <PropertyRef Name="IDDisponibilidad" />
+            </Principal>
+            <Dependent Role="EventoUsuarioHorario">
+              <PropertyRef Name="Hour_10" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EventoUsuarioHorario_Disponibilidad11">
+          <End Role="Disponibilidad" Type="Self.Disponibilidad" Multiplicity="1" />
+          <End Role="EventoUsuarioHorario" Type="Self.EventoUsuarioHorario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Disponibilidad">
+              <PropertyRef Name="IDDisponibilidad" />
+            </Principal>
+            <Dependent Role="EventoUsuarioHorario">
+              <PropertyRef Name="Hour_11" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EventoUsuarioHorario_Disponibilidad12">
+          <End Role="Disponibilidad" Type="Self.Disponibilidad" Multiplicity="1" />
+          <End Role="EventoUsuarioHorario" Type="Self.EventoUsuarioHorario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Disponibilidad">
+              <PropertyRef Name="IDDisponibilidad" />
+            </Principal>
+            <Dependent Role="EventoUsuarioHorario">
+              <PropertyRef Name="Hour_12" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EventoUsuarioHorario_Disponibilidad13">
+          <End Role="Disponibilidad" Type="Self.Disponibilidad" Multiplicity="1" />
+          <End Role="EventoUsuarioHorario" Type="Self.EventoUsuarioHorario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Disponibilidad">
+              <PropertyRef Name="IDDisponibilidad" />
+            </Principal>
+            <Dependent Role="EventoUsuarioHorario">
+              <PropertyRef Name="Hour_13" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EventoUsuarioHorario_Disponibilidad14">
+          <End Role="Disponibilidad" Type="Self.Disponibilidad" Multiplicity="1" />
+          <End Role="EventoUsuarioHorario" Type="Self.EventoUsuarioHorario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Disponibilidad">
+              <PropertyRef Name="IDDisponibilidad" />
+            </Principal>
+            <Dependent Role="EventoUsuarioHorario">
+              <PropertyRef Name="Hour_14" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EventoUsuarioHorario_Disponibilidad15">
+          <End Role="Disponibilidad" Type="Self.Disponibilidad" Multiplicity="1" />
+          <End Role="EventoUsuarioHorario" Type="Self.EventoUsuarioHorario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Disponibilidad">
+              <PropertyRef Name="IDDisponibilidad" />
+            </Principal>
+            <Dependent Role="EventoUsuarioHorario">
+              <PropertyRef Name="Hour_15" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EventoUsuarioHorario_Disponibilidad16">
+          <End Role="Disponibilidad" Type="Self.Disponibilidad" Multiplicity="1" />
+          <End Role="EventoUsuarioHorario" Type="Self.EventoUsuarioHorario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Disponibilidad">
+              <PropertyRef Name="IDDisponibilidad" />
+            </Principal>
+            <Dependent Role="EventoUsuarioHorario">
+              <PropertyRef Name="Hour_16" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EventoUsuarioHorario_Disponibilidad17">
+          <End Role="Disponibilidad" Type="Self.Disponibilidad" Multiplicity="1" />
+          <End Role="EventoUsuarioHorario" Type="Self.EventoUsuarioHorario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Disponibilidad">
+              <PropertyRef Name="IDDisponibilidad" />
+            </Principal>
+            <Dependent Role="EventoUsuarioHorario">
+              <PropertyRef Name="Hour_17" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EventoUsuarioHorario_Disponibilidad18">
+          <End Role="Disponibilidad" Type="Self.Disponibilidad" Multiplicity="1" />
+          <End Role="EventoUsuarioHorario" Type="Self.EventoUsuarioHorario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Disponibilidad">
+              <PropertyRef Name="IDDisponibilidad" />
+            </Principal>
+            <Dependent Role="EventoUsuarioHorario">
+              <PropertyRef Name="Hour_18" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EventoUsuarioHorario_Disponibilidad19">
+          <End Role="Disponibilidad" Type="Self.Disponibilidad" Multiplicity="1" />
+          <End Role="EventoUsuarioHorario" Type="Self.EventoUsuarioHorario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Disponibilidad">
+              <PropertyRef Name="IDDisponibilidad" />
+            </Principal>
+            <Dependent Role="EventoUsuarioHorario">
+              <PropertyRef Name="Hour_19" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EventoUsuarioHorario_Disponibilidad2">
+          <End Role="Disponibilidad" Type="Self.Disponibilidad" Multiplicity="1" />
+          <End Role="EventoUsuarioHorario" Type="Self.EventoUsuarioHorario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Disponibilidad">
+              <PropertyRef Name="IDDisponibilidad" />
+            </Principal>
+            <Dependent Role="EventoUsuarioHorario">
+              <PropertyRef Name="Hour_2" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EventoUsuarioHorario_Disponibilidad20">
+          <End Role="Disponibilidad" Type="Self.Disponibilidad" Multiplicity="1" />
+          <End Role="EventoUsuarioHorario" Type="Self.EventoUsuarioHorario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Disponibilidad">
+              <PropertyRef Name="IDDisponibilidad" />
+            </Principal>
+            <Dependent Role="EventoUsuarioHorario">
+              <PropertyRef Name="Hour_20" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EventoUsuarioHorario_Disponibilidad21">
+          <End Role="Disponibilidad" Type="Self.Disponibilidad" Multiplicity="1" />
+          <End Role="EventoUsuarioHorario" Type="Self.EventoUsuarioHorario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Disponibilidad">
+              <PropertyRef Name="IDDisponibilidad" />
+            </Principal>
+            <Dependent Role="EventoUsuarioHorario">
+              <PropertyRef Name="Hour_21" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EventoUsuarioHorario_Disponibilidad22">
+          <End Role="Disponibilidad" Type="Self.Disponibilidad" Multiplicity="1" />
+          <End Role="EventoUsuarioHorario" Type="Self.EventoUsuarioHorario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Disponibilidad">
+              <PropertyRef Name="IDDisponibilidad" />
+            </Principal>
+            <Dependent Role="EventoUsuarioHorario">
+              <PropertyRef Name="Hour_22" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EventoUsuarioHorario_Disponibilidad23">
+          <End Role="Disponibilidad" Type="Self.Disponibilidad" Multiplicity="1" />
+          <End Role="EventoUsuarioHorario" Type="Self.EventoUsuarioHorario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Disponibilidad">
+              <PropertyRef Name="IDDisponibilidad" />
+            </Principal>
+            <Dependent Role="EventoUsuarioHorario">
+              <PropertyRef Name="Hour_23" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EventoUsuarioHorario_Disponibilidad24">
+          <End Role="Disponibilidad" Type="Self.Disponibilidad" Multiplicity="1" />
+          <End Role="EventoUsuarioHorario" Type="Self.EventoUsuarioHorario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Disponibilidad">
+              <PropertyRef Name="IDDisponibilidad" />
+            </Principal>
+            <Dependent Role="EventoUsuarioHorario">
+              <PropertyRef Name="Hour_24" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EventoUsuarioHorario_Disponibilidad3">
+          <End Role="Disponibilidad" Type="Self.Disponibilidad" Multiplicity="1" />
+          <End Role="EventoUsuarioHorario" Type="Self.EventoUsuarioHorario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Disponibilidad">
+              <PropertyRef Name="IDDisponibilidad" />
+            </Principal>
+            <Dependent Role="EventoUsuarioHorario">
+              <PropertyRef Name="Hour_3" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EventoUsuarioHorario_Disponibilidad4">
+          <End Role="Disponibilidad" Type="Self.Disponibilidad" Multiplicity="1" />
+          <End Role="EventoUsuarioHorario" Type="Self.EventoUsuarioHorario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Disponibilidad">
+              <PropertyRef Name="IDDisponibilidad" />
+            </Principal>
+            <Dependent Role="EventoUsuarioHorario">
+              <PropertyRef Name="Hour_4" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EventoUsuarioHorario_Disponibilidad5">
+          <End Role="Disponibilidad" Type="Self.Disponibilidad" Multiplicity="1" />
+          <End Role="EventoUsuarioHorario" Type="Self.EventoUsuarioHorario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Disponibilidad">
+              <PropertyRef Name="IDDisponibilidad" />
+            </Principal>
+            <Dependent Role="EventoUsuarioHorario">
+              <PropertyRef Name="Hour_5" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EventoUsuarioHorario_Disponibilidad6">
+          <End Role="Disponibilidad" Type="Self.Disponibilidad" Multiplicity="1" />
+          <End Role="EventoUsuarioHorario" Type="Self.EventoUsuarioHorario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Disponibilidad">
+              <PropertyRef Name="IDDisponibilidad" />
+            </Principal>
+            <Dependent Role="EventoUsuarioHorario">
+              <PropertyRef Name="Hour_6" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EventoUsuarioHorario_Disponibilidad7">
+          <End Role="Disponibilidad" Type="Self.Disponibilidad" Multiplicity="1" />
+          <End Role="EventoUsuarioHorario" Type="Self.EventoUsuarioHorario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Disponibilidad">
+              <PropertyRef Name="IDDisponibilidad" />
+            </Principal>
+            <Dependent Role="EventoUsuarioHorario">
+              <PropertyRef Name="Hour_7" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EventoUsuarioHorario_Disponibilidad8">
+          <End Role="Disponibilidad" Type="Self.Disponibilidad" Multiplicity="1" />
+          <End Role="EventoUsuarioHorario" Type="Self.EventoUsuarioHorario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Disponibilidad">
+              <PropertyRef Name="IDDisponibilidad" />
+            </Principal>
+            <Dependent Role="EventoUsuarioHorario">
+              <PropertyRef Name="Hour_8" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EventoUsuarioHorario_Disponibilidad9">
+          <End Role="Disponibilidad" Type="Self.Disponibilidad" Multiplicity="1" />
+          <End Role="EventoUsuarioHorario" Type="Self.EventoUsuarioHorario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Disponibilidad">
+              <PropertyRef Name="IDDisponibilidad" />
+            </Principal>
+            <Dependent Role="EventoUsuarioHorario">
+              <PropertyRef Name="Hour_9" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EventoUsuarioHorario_EventoUsuario">
+          <End Role="EventoUsuario" Type="Self.EventoUsuario" Multiplicity="1" />
+          <End Role="EventoUsuarioHorario" Type="Self.EventoUsuarioHorario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EventoUsuario">
+              <PropertyRef Name="IDEventoUsuario" />
+            </Principal>
+            <Dependent Role="EventoUsuarioHorario">
+              <PropertyRef Name="IDEventoUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsuarioHorario_Dia">
+          <End Role="Dia" Type="Self.Dia" Multiplicity="1" />
+          <End Role="UsuarioHorario" Type="Self.UsuarioHorario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Dia">
+              <PropertyRef Name="IDDia" />
+            </Principal>
+            <Dependent Role="UsuarioHorario">
+              <PropertyRef Name="IDDia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsuarioHorario_Disponibilidad1">
+          <End Role="Disponibilidad" Type="Self.Disponibilidad" Multiplicity="1" />
+          <End Role="UsuarioHorario" Type="Self.UsuarioHorario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Disponibilidad">
+              <PropertyRef Name="IDDisponibilidad" />
+            </Principal>
+            <Dependent Role="UsuarioHorario">
+              <PropertyRef Name="Hour_1" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsuarioHorario_Disponibilidad10">
+          <End Role="Disponibilidad" Type="Self.Disponibilidad" Multiplicity="1" />
+          <End Role="UsuarioHorario" Type="Self.UsuarioHorario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Disponibilidad">
+              <PropertyRef Name="IDDisponibilidad" />
+            </Principal>
+            <Dependent Role="UsuarioHorario">
+              <PropertyRef Name="Hour_10" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsuarioHorario_Disponibilidad11">
+          <End Role="Disponibilidad" Type="Self.Disponibilidad" Multiplicity="1" />
+          <End Role="UsuarioHorario" Type="Self.UsuarioHorario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Disponibilidad">
+              <PropertyRef Name="IDDisponibilidad" />
+            </Principal>
+            <Dependent Role="UsuarioHorario">
+              <PropertyRef Name="Hour_11" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsuarioHorario_Disponibilidad12">
+          <End Role="Disponibilidad" Type="Self.Disponibilidad" Multiplicity="1" />
+          <End Role="UsuarioHorario" Type="Self.UsuarioHorario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Disponibilidad">
+              <PropertyRef Name="IDDisponibilidad" />
+            </Principal>
+            <Dependent Role="UsuarioHorario">
+              <PropertyRef Name="Hour_12" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsuarioHorario_Disponibilidad13">
+          <End Role="Disponibilidad" Type="Self.Disponibilidad" Multiplicity="1" />
+          <End Role="UsuarioHorario" Type="Self.UsuarioHorario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Disponibilidad">
+              <PropertyRef Name="IDDisponibilidad" />
+            </Principal>
+            <Dependent Role="UsuarioHorario">
+              <PropertyRef Name="Hour_13" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsuarioHorario_Disponibilidad14">
+          <End Role="Disponibilidad" Type="Self.Disponibilidad" Multiplicity="1" />
+          <End Role="UsuarioHorario" Type="Self.UsuarioHorario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Disponibilidad">
+              <PropertyRef Name="IDDisponibilidad" />
+            </Principal>
+            <Dependent Role="UsuarioHorario">
+              <PropertyRef Name="Hour_14" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsuarioHorario_Disponibilidad15">
+          <End Role="Disponibilidad" Type="Self.Disponibilidad" Multiplicity="1" />
+          <End Role="UsuarioHorario" Type="Self.UsuarioHorario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Disponibilidad">
+              <PropertyRef Name="IDDisponibilidad" />
+            </Principal>
+            <Dependent Role="UsuarioHorario">
+              <PropertyRef Name="Hour_15" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsuarioHorario_Disponibilidad16">
+          <End Role="Disponibilidad" Type="Self.Disponibilidad" Multiplicity="1" />
+          <End Role="UsuarioHorario" Type="Self.UsuarioHorario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Disponibilidad">
+              <PropertyRef Name="IDDisponibilidad" />
+            </Principal>
+            <Dependent Role="UsuarioHorario">
+              <PropertyRef Name="Hour_16" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsuarioHorario_Disponibilidad17">
+          <End Role="Disponibilidad" Type="Self.Disponibilidad" Multiplicity="1" />
+          <End Role="UsuarioHorario" Type="Self.UsuarioHorario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Disponibilidad">
+              <PropertyRef Name="IDDisponibilidad" />
+            </Principal>
+            <Dependent Role="UsuarioHorario">
+              <PropertyRef Name="Hour_17" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsuarioHorario_Disponibilidad18">
+          <End Role="Disponibilidad" Type="Self.Disponibilidad" Multiplicity="1" />
+          <End Role="UsuarioHorario" Type="Self.UsuarioHorario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Disponibilidad">
+              <PropertyRef Name="IDDisponibilidad" />
+            </Principal>
+            <Dependent Role="UsuarioHorario">
+              <PropertyRef Name="Hour_18" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsuarioHorario_Disponibilidad19">
+          <End Role="Disponibilidad" Type="Self.Disponibilidad" Multiplicity="1" />
+          <End Role="UsuarioHorario" Type="Self.UsuarioHorario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Disponibilidad">
+              <PropertyRef Name="IDDisponibilidad" />
+            </Principal>
+            <Dependent Role="UsuarioHorario">
+              <PropertyRef Name="Hour_19" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsuarioHorario_Disponibilidad2">
+          <End Role="Disponibilidad" Type="Self.Disponibilidad" Multiplicity="1" />
+          <End Role="UsuarioHorario" Type="Self.UsuarioHorario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Disponibilidad">
+              <PropertyRef Name="IDDisponibilidad" />
+            </Principal>
+            <Dependent Role="UsuarioHorario">
+              <PropertyRef Name="Hour_2" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsuarioHorario_Disponibilidad20">
+          <End Role="Disponibilidad" Type="Self.Disponibilidad" Multiplicity="1" />
+          <End Role="UsuarioHorario" Type="Self.UsuarioHorario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Disponibilidad">
+              <PropertyRef Name="IDDisponibilidad" />
+            </Principal>
+            <Dependent Role="UsuarioHorario">
+              <PropertyRef Name="Hour_20" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsuarioHorario_Disponibilidad21">
+          <End Role="Disponibilidad" Type="Self.Disponibilidad" Multiplicity="1" />
+          <End Role="UsuarioHorario" Type="Self.UsuarioHorario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Disponibilidad">
+              <PropertyRef Name="IDDisponibilidad" />
+            </Principal>
+            <Dependent Role="UsuarioHorario">
+              <PropertyRef Name="Hour_21" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsuarioHorario_Disponibilidad22">
+          <End Role="Disponibilidad" Type="Self.Disponibilidad" Multiplicity="1" />
+          <End Role="UsuarioHorario" Type="Self.UsuarioHorario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Disponibilidad">
+              <PropertyRef Name="IDDisponibilidad" />
+            </Principal>
+            <Dependent Role="UsuarioHorario">
+              <PropertyRef Name="Hour_22" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsuarioHorario_Disponibilidad23">
+          <End Role="Disponibilidad" Type="Self.Disponibilidad" Multiplicity="1" />
+          <End Role="UsuarioHorario" Type="Self.UsuarioHorario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Disponibilidad">
+              <PropertyRef Name="IDDisponibilidad" />
+            </Principal>
+            <Dependent Role="UsuarioHorario">
+              <PropertyRef Name="Hour_23" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsuarioHorario_Disponibilidad24">
+          <End Role="Disponibilidad" Type="Self.Disponibilidad" Multiplicity="1" />
+          <End Role="UsuarioHorario" Type="Self.UsuarioHorario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Disponibilidad">
+              <PropertyRef Name="IDDisponibilidad" />
+            </Principal>
+            <Dependent Role="UsuarioHorario">
+              <PropertyRef Name="Hour_24" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsuarioHorario_Disponibilidad3">
+          <End Role="Disponibilidad" Type="Self.Disponibilidad" Multiplicity="1" />
+          <End Role="UsuarioHorario" Type="Self.UsuarioHorario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Disponibilidad">
+              <PropertyRef Name="IDDisponibilidad" />
+            </Principal>
+            <Dependent Role="UsuarioHorario">
+              <PropertyRef Name="Hour_3" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsuarioHorario_Disponibilidad4">
+          <End Role="Disponibilidad" Type="Self.Disponibilidad" Multiplicity="1" />
+          <End Role="UsuarioHorario" Type="Self.UsuarioHorario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Disponibilidad">
+              <PropertyRef Name="IDDisponibilidad" />
+            </Principal>
+            <Dependent Role="UsuarioHorario">
+              <PropertyRef Name="Hour_4" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsuarioHorario_Disponibilidad5">
+          <End Role="Disponibilidad" Type="Self.Disponibilidad" Multiplicity="1" />
+          <End Role="UsuarioHorario" Type="Self.UsuarioHorario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Disponibilidad">
+              <PropertyRef Name="IDDisponibilidad" />
+            </Principal>
+            <Dependent Role="UsuarioHorario">
+              <PropertyRef Name="Hour_5" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsuarioHorario_Disponibilidad6">
+          <End Role="Disponibilidad" Type="Self.Disponibilidad" Multiplicity="1" />
+          <End Role="UsuarioHorario" Type="Self.UsuarioHorario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Disponibilidad">
+              <PropertyRef Name="IDDisponibilidad" />
+            </Principal>
+            <Dependent Role="UsuarioHorario">
+              <PropertyRef Name="Hour_6" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsuarioHorario_Disponibilidad7">
+          <End Role="Disponibilidad" Type="Self.Disponibilidad" Multiplicity="1" />
+          <End Role="UsuarioHorario" Type="Self.UsuarioHorario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Disponibilidad">
+              <PropertyRef Name="IDDisponibilidad" />
+            </Principal>
+            <Dependent Role="UsuarioHorario">
+              <PropertyRef Name="Hour_7" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsuarioHorario_Disponibilidad8">
+          <End Role="Disponibilidad" Type="Self.Disponibilidad" Multiplicity="1" />
+          <End Role="UsuarioHorario" Type="Self.UsuarioHorario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Disponibilidad">
+              <PropertyRef Name="IDDisponibilidad" />
+            </Principal>
+            <Dependent Role="UsuarioHorario">
+              <PropertyRef Name="Hour_8" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsuarioHorario_Disponibilidad9">
+          <End Role="Disponibilidad" Type="Self.Disponibilidad" Multiplicity="1" />
+          <End Role="UsuarioHorario" Type="Self.UsuarioHorario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Disponibilidad">
+              <PropertyRef Name="IDDisponibilidad" />
+            </Principal>
+            <Dependent Role="UsuarioHorario">
+              <PropertyRef Name="Hour_9" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsuarioHorario_Usuario">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="UsuarioHorario" Type="Self.UsuarioHorario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="UsuarioHorario">
+              <PropertyRef Name="IDUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="KATHIECentralModelStoreContainer">
+          <EntitySet Name="Dia" EntityType="Self.Dia" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Disponibilidad" EntityType="Self.Disponibilidad" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Estado" EntityType="Self.Estado" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Evento" EntityType="Self.Evento" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EventoUsuario" EntityType="Self.EventoUsuario" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EventoUsuarioHorario" EntityType="Self.EventoUsuarioHorario" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UsuarioHorario" EntityType="Self.UsuarioHorario" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Evento_Estado" Association="Self.FK_Evento_Estado">
+            <End Role="Estado" EntitySet="Estado" />
+            <End Role="Evento" EntitySet="Evento" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Evento_Usuario" Association="Self.FK_Evento_Usuario">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Evento" EntitySet="Evento" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EventoUsuario_Evento" Association="Self.FK_EventoUsuario_Evento">
+            <End Role="Evento" EntitySet="Evento" />
+            <End Role="EventoUsuario" EntitySet="EventoUsuario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EventoUsuario_Usuario" Association="Self.FK_EventoUsuario_Usuario">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="EventoUsuario" EntitySet="EventoUsuario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EventoUsuarioHorario_Disponibilidad1" Association="Self.FK_EventoUsuarioHorario_Disponibilidad1">
+            <End Role="Disponibilidad" EntitySet="Disponibilidad" />
+            <End Role="EventoUsuarioHorario" EntitySet="EventoUsuarioHorario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EventoUsuarioHorario_Disponibilidad10" Association="Self.FK_EventoUsuarioHorario_Disponibilidad10">
+            <End Role="Disponibilidad" EntitySet="Disponibilidad" />
+            <End Role="EventoUsuarioHorario" EntitySet="EventoUsuarioHorario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EventoUsuarioHorario_Disponibilidad11" Association="Self.FK_EventoUsuarioHorario_Disponibilidad11">
+            <End Role="Disponibilidad" EntitySet="Disponibilidad" />
+            <End Role="EventoUsuarioHorario" EntitySet="EventoUsuarioHorario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EventoUsuarioHorario_Disponibilidad12" Association="Self.FK_EventoUsuarioHorario_Disponibilidad12">
+            <End Role="Disponibilidad" EntitySet="Disponibilidad" />
+            <End Role="EventoUsuarioHorario" EntitySet="EventoUsuarioHorario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EventoUsuarioHorario_Disponibilidad13" Association="Self.FK_EventoUsuarioHorario_Disponibilidad13">
+            <End Role="Disponibilidad" EntitySet="Disponibilidad" />
+            <End Role="EventoUsuarioHorario" EntitySet="EventoUsuarioHorario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EventoUsuarioHorario_Disponibilidad14" Association="Self.FK_EventoUsuarioHorario_Disponibilidad14">
+            <End Role="Disponibilidad" EntitySet="Disponibilidad" />
+            <End Role="EventoUsuarioHorario" EntitySet="EventoUsuarioHorario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EventoUsuarioHorario_Disponibilidad15" Association="Self.FK_EventoUsuarioHorario_Disponibilidad15">
+            <End Role="Disponibilidad" EntitySet="Disponibilidad" />
+            <End Role="EventoUsuarioHorario" EntitySet="EventoUsuarioHorario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EventoUsuarioHorario_Disponibilidad16" Association="Self.FK_EventoUsuarioHorario_Disponibilidad16">
+            <End Role="Disponibilidad" EntitySet="Disponibilidad" />
+            <End Role="EventoUsuarioHorario" EntitySet="EventoUsuarioHorario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EventoUsuarioHorario_Disponibilidad17" Association="Self.FK_EventoUsuarioHorario_Disponibilidad17">
+            <End Role="Disponibilidad" EntitySet="Disponibilidad" />
+            <End Role="EventoUsuarioHorario" EntitySet="EventoUsuarioHorario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EventoUsuarioHorario_Disponibilidad18" Association="Self.FK_EventoUsuarioHorario_Disponibilidad18">
+            <End Role="Disponibilidad" EntitySet="Disponibilidad" />
+            <End Role="EventoUsuarioHorario" EntitySet="EventoUsuarioHorario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EventoUsuarioHorario_Disponibilidad19" Association="Self.FK_EventoUsuarioHorario_Disponibilidad19">
+            <End Role="Disponibilidad" EntitySet="Disponibilidad" />
+            <End Role="EventoUsuarioHorario" EntitySet="EventoUsuarioHorario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EventoUsuarioHorario_Disponibilidad2" Association="Self.FK_EventoUsuarioHorario_Disponibilidad2">
+            <End Role="Disponibilidad" EntitySet="Disponibilidad" />
+            <End Role="EventoUsuarioHorario" EntitySet="EventoUsuarioHorario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EventoUsuarioHorario_Disponibilidad20" Association="Self.FK_EventoUsuarioHorario_Disponibilidad20">
+            <End Role="Disponibilidad" EntitySet="Disponibilidad" />
+            <End Role="EventoUsuarioHorario" EntitySet="EventoUsuarioHorario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EventoUsuarioHorario_Disponibilidad21" Association="Self.FK_EventoUsuarioHorario_Disponibilidad21">
+            <End Role="Disponibilidad" EntitySet="Disponibilidad" />
+            <End Role="EventoUsuarioHorario" EntitySet="EventoUsuarioHorario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EventoUsuarioHorario_Disponibilidad22" Association="Self.FK_EventoUsuarioHorario_Disponibilidad22">
+            <End Role="Disponibilidad" EntitySet="Disponibilidad" />
+            <End Role="EventoUsuarioHorario" EntitySet="EventoUsuarioHorario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EventoUsuarioHorario_Disponibilidad23" Association="Self.FK_EventoUsuarioHorario_Disponibilidad23">
+            <End Role="Disponibilidad" EntitySet="Disponibilidad" />
+            <End Role="EventoUsuarioHorario" EntitySet="EventoUsuarioHorario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EventoUsuarioHorario_Disponibilidad24" Association="Self.FK_EventoUsuarioHorario_Disponibilidad24">
+            <End Role="Disponibilidad" EntitySet="Disponibilidad" />
+            <End Role="EventoUsuarioHorario" EntitySet="EventoUsuarioHorario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EventoUsuarioHorario_Disponibilidad3" Association="Self.FK_EventoUsuarioHorario_Disponibilidad3">
+            <End Role="Disponibilidad" EntitySet="Disponibilidad" />
+            <End Role="EventoUsuarioHorario" EntitySet="EventoUsuarioHorario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EventoUsuarioHorario_Disponibilidad4" Association="Self.FK_EventoUsuarioHorario_Disponibilidad4">
+            <End Role="Disponibilidad" EntitySet="Disponibilidad" />
+            <End Role="EventoUsuarioHorario" EntitySet="EventoUsuarioHorario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EventoUsuarioHorario_Disponibilidad5" Association="Self.FK_EventoUsuarioHorario_Disponibilidad5">
+            <End Role="Disponibilidad" EntitySet="Disponibilidad" />
+            <End Role="EventoUsuarioHorario" EntitySet="EventoUsuarioHorario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EventoUsuarioHorario_Disponibilidad6" Association="Self.FK_EventoUsuarioHorario_Disponibilidad6">
+            <End Role="Disponibilidad" EntitySet="Disponibilidad" />
+            <End Role="EventoUsuarioHorario" EntitySet="EventoUsuarioHorario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EventoUsuarioHorario_Disponibilidad7" Association="Self.FK_EventoUsuarioHorario_Disponibilidad7">
+            <End Role="Disponibilidad" EntitySet="Disponibilidad" />
+            <End Role="EventoUsuarioHorario" EntitySet="EventoUsuarioHorario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EventoUsuarioHorario_Disponibilidad8" Association="Self.FK_EventoUsuarioHorario_Disponibilidad8">
+            <End Role="Disponibilidad" EntitySet="Disponibilidad" />
+            <End Role="EventoUsuarioHorario" EntitySet="EventoUsuarioHorario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EventoUsuarioHorario_Disponibilidad9" Association="Self.FK_EventoUsuarioHorario_Disponibilidad9">
+            <End Role="Disponibilidad" EntitySet="Disponibilidad" />
+            <End Role="EventoUsuarioHorario" EntitySet="EventoUsuarioHorario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EventoUsuarioHorario_EventoUsuario" Association="Self.FK_EventoUsuarioHorario_EventoUsuario">
+            <End Role="EventoUsuario" EntitySet="EventoUsuario" />
+            <End Role="EventoUsuarioHorario" EntitySet="EventoUsuarioHorario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsuarioHorario_Dia" Association="Self.FK_UsuarioHorario_Dia">
+            <End Role="Dia" EntitySet="Dia" />
+            <End Role="UsuarioHorario" EntitySet="UsuarioHorario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsuarioHorario_Disponibilidad1" Association="Self.FK_UsuarioHorario_Disponibilidad1">
+            <End Role="Disponibilidad" EntitySet="Disponibilidad" />
+            <End Role="UsuarioHorario" EntitySet="UsuarioHorario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsuarioHorario_Disponibilidad10" Association="Self.FK_UsuarioHorario_Disponibilidad10">
+            <End Role="Disponibilidad" EntitySet="Disponibilidad" />
+            <End Role="UsuarioHorario" EntitySet="UsuarioHorario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsuarioHorario_Disponibilidad11" Association="Self.FK_UsuarioHorario_Disponibilidad11">
+            <End Role="Disponibilidad" EntitySet="Disponibilidad" />
+            <End Role="UsuarioHorario" EntitySet="UsuarioHorario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsuarioHorario_Disponibilidad12" Association="Self.FK_UsuarioHorario_Disponibilidad12">
+            <End Role="Disponibilidad" EntitySet="Disponibilidad" />
+            <End Role="UsuarioHorario" EntitySet="UsuarioHorario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsuarioHorario_Disponibilidad13" Association="Self.FK_UsuarioHorario_Disponibilidad13">
+            <End Role="Disponibilidad" EntitySet="Disponibilidad" />
+            <End Role="UsuarioHorario" EntitySet="UsuarioHorario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsuarioHorario_Disponibilidad14" Association="Self.FK_UsuarioHorario_Disponibilidad14">
+            <End Role="Disponibilidad" EntitySet="Disponibilidad" />
+            <End Role="UsuarioHorario" EntitySet="UsuarioHorario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsuarioHorario_Disponibilidad15" Association="Self.FK_UsuarioHorario_Disponibilidad15">
+            <End Role="Disponibilidad" EntitySet="Disponibilidad" />
+            <End Role="UsuarioHorario" EntitySet="UsuarioHorario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsuarioHorario_Disponibilidad16" Association="Self.FK_UsuarioHorario_Disponibilidad16">
+            <End Role="Disponibilidad" EntitySet="Disponibilidad" />
+            <End Role="UsuarioHorario" EntitySet="UsuarioHorario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsuarioHorario_Disponibilidad17" Association="Self.FK_UsuarioHorario_Disponibilidad17">
+            <End Role="Disponibilidad" EntitySet="Disponibilidad" />
+            <End Role="UsuarioHorario" EntitySet="UsuarioHorario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsuarioHorario_Disponibilidad18" Association="Self.FK_UsuarioHorario_Disponibilidad18">
+            <End Role="Disponibilidad" EntitySet="Disponibilidad" />
+            <End Role="UsuarioHorario" EntitySet="UsuarioHorario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsuarioHorario_Disponibilidad19" Association="Self.FK_UsuarioHorario_Disponibilidad19">
+            <End Role="Disponibilidad" EntitySet="Disponibilidad" />
+            <End Role="UsuarioHorario" EntitySet="UsuarioHorario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsuarioHorario_Disponibilidad2" Association="Self.FK_UsuarioHorario_Disponibilidad2">
+            <End Role="Disponibilidad" EntitySet="Disponibilidad" />
+            <End Role="UsuarioHorario" EntitySet="UsuarioHorario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsuarioHorario_Disponibilidad20" Association="Self.FK_UsuarioHorario_Disponibilidad20">
+            <End Role="Disponibilidad" EntitySet="Disponibilidad" />
+            <End Role="UsuarioHorario" EntitySet="UsuarioHorario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsuarioHorario_Disponibilidad21" Association="Self.FK_UsuarioHorario_Disponibilidad21">
+            <End Role="Disponibilidad" EntitySet="Disponibilidad" />
+            <End Role="UsuarioHorario" EntitySet="UsuarioHorario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsuarioHorario_Disponibilidad22" Association="Self.FK_UsuarioHorario_Disponibilidad22">
+            <End Role="Disponibilidad" EntitySet="Disponibilidad" />
+            <End Role="UsuarioHorario" EntitySet="UsuarioHorario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsuarioHorario_Disponibilidad23" Association="Self.FK_UsuarioHorario_Disponibilidad23">
+            <End Role="Disponibilidad" EntitySet="Disponibilidad" />
+            <End Role="UsuarioHorario" EntitySet="UsuarioHorario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsuarioHorario_Disponibilidad24" Association="Self.FK_UsuarioHorario_Disponibilidad24">
+            <End Role="Disponibilidad" EntitySet="Disponibilidad" />
+            <End Role="UsuarioHorario" EntitySet="UsuarioHorario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsuarioHorario_Disponibilidad3" Association="Self.FK_UsuarioHorario_Disponibilidad3">
+            <End Role="Disponibilidad" EntitySet="Disponibilidad" />
+            <End Role="UsuarioHorario" EntitySet="UsuarioHorario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsuarioHorario_Disponibilidad4" Association="Self.FK_UsuarioHorario_Disponibilidad4">
+            <End Role="Disponibilidad" EntitySet="Disponibilidad" />
+            <End Role="UsuarioHorario" EntitySet="UsuarioHorario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsuarioHorario_Disponibilidad5" Association="Self.FK_UsuarioHorario_Disponibilidad5">
+            <End Role="Disponibilidad" EntitySet="Disponibilidad" />
+            <End Role="UsuarioHorario" EntitySet="UsuarioHorario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsuarioHorario_Disponibilidad6" Association="Self.FK_UsuarioHorario_Disponibilidad6">
+            <End Role="Disponibilidad" EntitySet="Disponibilidad" />
+            <End Role="UsuarioHorario" EntitySet="UsuarioHorario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsuarioHorario_Disponibilidad7" Association="Self.FK_UsuarioHorario_Disponibilidad7">
+            <End Role="Disponibilidad" EntitySet="Disponibilidad" />
+            <End Role="UsuarioHorario" EntitySet="UsuarioHorario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsuarioHorario_Disponibilidad8" Association="Self.FK_UsuarioHorario_Disponibilidad8">
+            <End Role="Disponibilidad" EntitySet="Disponibilidad" />
+            <End Role="UsuarioHorario" EntitySet="UsuarioHorario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsuarioHorario_Disponibilidad9" Association="Self.FK_UsuarioHorario_Disponibilidad9">
+            <End Role="Disponibilidad" EntitySet="Disponibilidad" />
+            <End Role="UsuarioHorario" EntitySet="UsuarioHorario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsuarioHorario_Usuario" Association="Self.FK_UsuarioHorario_Usuario">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="UsuarioHorario" EntitySet="UsuarioHorario" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="KATHIECentralModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="KATHIECentralEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Dias" EntityType="KATHIECentralModel.Dia" />
+          <EntitySet Name="Disponibilidads" EntityType="KATHIECentralModel.Disponibilidad" />
+          <EntitySet Name="Estadoes" EntityType="KATHIECentralModel.Estado" />
+          <EntitySet Name="Eventoes" EntityType="KATHIECentralModel.Evento" />
+          <EntitySet Name="EventoUsuarios" EntityType="KATHIECentralModel.EventoUsuario" />
+          <EntitySet Name="EventoUsuarioHorarios" EntityType="KATHIECentralModel.EventoUsuarioHorario" />
+          <EntitySet Name="Usuarios" EntityType="KATHIECentralModel.Usuario" />
+          <EntitySet Name="UsuarioHorarios" EntityType="KATHIECentralModel.UsuarioHorario" />
+          <AssociationSet Name="FK_UsuarioHorario_Dia" Association="KATHIECentralModel.FK_UsuarioHorario_Dia">
+            <End Role="Dia" EntitySet="Dias" />
+            <End Role="UsuarioHorario" EntitySet="UsuarioHorarios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EventoUsuarioHorario_Disponibilidad1" Association="KATHIECentralModel.FK_EventoUsuarioHorario_Disponibilidad1">
+            <End Role="Disponibilidad" EntitySet="Disponibilidads" />
+            <End Role="EventoUsuarioHorario" EntitySet="EventoUsuarioHorarios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EventoUsuarioHorario_Disponibilidad10" Association="KATHIECentralModel.FK_EventoUsuarioHorario_Disponibilidad10">
+            <End Role="Disponibilidad" EntitySet="Disponibilidads" />
+            <End Role="EventoUsuarioHorario" EntitySet="EventoUsuarioHorarios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EventoUsuarioHorario_Disponibilidad11" Association="KATHIECentralModel.FK_EventoUsuarioHorario_Disponibilidad11">
+            <End Role="Disponibilidad" EntitySet="Disponibilidads" />
+            <End Role="EventoUsuarioHorario" EntitySet="EventoUsuarioHorarios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EventoUsuarioHorario_Disponibilidad12" Association="KATHIECentralModel.FK_EventoUsuarioHorario_Disponibilidad12">
+            <End Role="Disponibilidad" EntitySet="Disponibilidads" />
+            <End Role="EventoUsuarioHorario" EntitySet="EventoUsuarioHorarios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EventoUsuarioHorario_Disponibilidad13" Association="KATHIECentralModel.FK_EventoUsuarioHorario_Disponibilidad13">
+            <End Role="Disponibilidad" EntitySet="Disponibilidads" />
+            <End Role="EventoUsuarioHorario" EntitySet="EventoUsuarioHorarios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EventoUsuarioHorario_Disponibilidad14" Association="KATHIECentralModel.FK_EventoUsuarioHorario_Disponibilidad14">
+            <End Role="Disponibilidad" EntitySet="Disponibilidads" />
+            <End Role="EventoUsuarioHorario" EntitySet="EventoUsuarioHorarios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EventoUsuarioHorario_Disponibilidad15" Association="KATHIECentralModel.FK_EventoUsuarioHorario_Disponibilidad15">
+            <End Role="Disponibilidad" EntitySet="Disponibilidads" />
+            <End Role="EventoUsuarioHorario" EntitySet="EventoUsuarioHorarios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EventoUsuarioHorario_Disponibilidad16" Association="KATHIECentralModel.FK_EventoUsuarioHorario_Disponibilidad16">
+            <End Role="Disponibilidad" EntitySet="Disponibilidads" />
+            <End Role="EventoUsuarioHorario" EntitySet="EventoUsuarioHorarios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EventoUsuarioHorario_Disponibilidad17" Association="KATHIECentralModel.FK_EventoUsuarioHorario_Disponibilidad17">
+            <End Role="Disponibilidad" EntitySet="Disponibilidads" />
+            <End Role="EventoUsuarioHorario" EntitySet="EventoUsuarioHorarios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EventoUsuarioHorario_Disponibilidad18" Association="KATHIECentralModel.FK_EventoUsuarioHorario_Disponibilidad18">
+            <End Role="Disponibilidad" EntitySet="Disponibilidads" />
+            <End Role="EventoUsuarioHorario" EntitySet="EventoUsuarioHorarios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EventoUsuarioHorario_Disponibilidad19" Association="KATHIECentralModel.FK_EventoUsuarioHorario_Disponibilidad19">
+            <End Role="Disponibilidad" EntitySet="Disponibilidads" />
+            <End Role="EventoUsuarioHorario" EntitySet="EventoUsuarioHorarios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EventoUsuarioHorario_Disponibilidad2" Association="KATHIECentralModel.FK_EventoUsuarioHorario_Disponibilidad2">
+            <End Role="Disponibilidad" EntitySet="Disponibilidads" />
+            <End Role="EventoUsuarioHorario" EntitySet="EventoUsuarioHorarios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EventoUsuarioHorario_Disponibilidad20" Association="KATHIECentralModel.FK_EventoUsuarioHorario_Disponibilidad20">
+            <End Role="Disponibilidad" EntitySet="Disponibilidads" />
+            <End Role="EventoUsuarioHorario" EntitySet="EventoUsuarioHorarios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EventoUsuarioHorario_Disponibilidad21" Association="KATHIECentralModel.FK_EventoUsuarioHorario_Disponibilidad21">
+            <End Role="Disponibilidad" EntitySet="Disponibilidads" />
+            <End Role="EventoUsuarioHorario" EntitySet="EventoUsuarioHorarios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EventoUsuarioHorario_Disponibilidad22" Association="KATHIECentralModel.FK_EventoUsuarioHorario_Disponibilidad22">
+            <End Role="Disponibilidad" EntitySet="Disponibilidads" />
+            <End Role="EventoUsuarioHorario" EntitySet="EventoUsuarioHorarios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EventoUsuarioHorario_Disponibilidad23" Association="KATHIECentralModel.FK_EventoUsuarioHorario_Disponibilidad23">
+            <End Role="Disponibilidad" EntitySet="Disponibilidads" />
+            <End Role="EventoUsuarioHorario" EntitySet="EventoUsuarioHorarios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EventoUsuarioHorario_Disponibilidad24" Association="KATHIECentralModel.FK_EventoUsuarioHorario_Disponibilidad24">
+            <End Role="Disponibilidad" EntitySet="Disponibilidads" />
+            <End Role="EventoUsuarioHorario" EntitySet="EventoUsuarioHorarios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EventoUsuarioHorario_Disponibilidad3" Association="KATHIECentralModel.FK_EventoUsuarioHorario_Disponibilidad3">
+            <End Role="Disponibilidad" EntitySet="Disponibilidads" />
+            <End Role="EventoUsuarioHorario" EntitySet="EventoUsuarioHorarios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EventoUsuarioHorario_Disponibilidad4" Association="KATHIECentralModel.FK_EventoUsuarioHorario_Disponibilidad4">
+            <End Role="Disponibilidad" EntitySet="Disponibilidads" />
+            <End Role="EventoUsuarioHorario" EntitySet="EventoUsuarioHorarios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EventoUsuarioHorario_Disponibilidad5" Association="KATHIECentralModel.FK_EventoUsuarioHorario_Disponibilidad5">
+            <End Role="Disponibilidad" EntitySet="Disponibilidads" />
+            <End Role="EventoUsuarioHorario" EntitySet="EventoUsuarioHorarios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EventoUsuarioHorario_Disponibilidad6" Association="KATHIECentralModel.FK_EventoUsuarioHorario_Disponibilidad6">
+            <End Role="Disponibilidad" EntitySet="Disponibilidads" />
+            <End Role="EventoUsuarioHorario" EntitySet="EventoUsuarioHorarios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EventoUsuarioHorario_Disponibilidad7" Association="KATHIECentralModel.FK_EventoUsuarioHorario_Disponibilidad7">
+            <End Role="Disponibilidad" EntitySet="Disponibilidads" />
+            <End Role="EventoUsuarioHorario" EntitySet="EventoUsuarioHorarios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EventoUsuarioHorario_Disponibilidad8" Association="KATHIECentralModel.FK_EventoUsuarioHorario_Disponibilidad8">
+            <End Role="Disponibilidad" EntitySet="Disponibilidads" />
+            <End Role="EventoUsuarioHorario" EntitySet="EventoUsuarioHorarios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EventoUsuarioHorario_Disponibilidad9" Association="KATHIECentralModel.FK_EventoUsuarioHorario_Disponibilidad9">
+            <End Role="Disponibilidad" EntitySet="Disponibilidads" />
+            <End Role="EventoUsuarioHorario" EntitySet="EventoUsuarioHorarios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsuarioHorario_Disponibilidad1" Association="KATHIECentralModel.FK_UsuarioHorario_Disponibilidad1">
+            <End Role="Disponibilidad" EntitySet="Disponibilidads" />
+            <End Role="UsuarioHorario" EntitySet="UsuarioHorarios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsuarioHorario_Disponibilidad10" Association="KATHIECentralModel.FK_UsuarioHorario_Disponibilidad10">
+            <End Role="Disponibilidad" EntitySet="Disponibilidads" />
+            <End Role="UsuarioHorario" EntitySet="UsuarioHorarios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsuarioHorario_Disponibilidad11" Association="KATHIECentralModel.FK_UsuarioHorario_Disponibilidad11">
+            <End Role="Disponibilidad" EntitySet="Disponibilidads" />
+            <End Role="UsuarioHorario" EntitySet="UsuarioHorarios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsuarioHorario_Disponibilidad12" Association="KATHIECentralModel.FK_UsuarioHorario_Disponibilidad12">
+            <End Role="Disponibilidad" EntitySet="Disponibilidads" />
+            <End Role="UsuarioHorario" EntitySet="UsuarioHorarios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsuarioHorario_Disponibilidad13" Association="KATHIECentralModel.FK_UsuarioHorario_Disponibilidad13">
+            <End Role="Disponibilidad" EntitySet="Disponibilidads" />
+            <End Role="UsuarioHorario" EntitySet="UsuarioHorarios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsuarioHorario_Disponibilidad14" Association="KATHIECentralModel.FK_UsuarioHorario_Disponibilidad14">
+            <End Role="Disponibilidad" EntitySet="Disponibilidads" />
+            <End Role="UsuarioHorario" EntitySet="UsuarioHorarios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsuarioHorario_Disponibilidad15" Association="KATHIECentralModel.FK_UsuarioHorario_Disponibilidad15">
+            <End Role="Disponibilidad" EntitySet="Disponibilidads" />
+            <End Role="UsuarioHorario" EntitySet="UsuarioHorarios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsuarioHorario_Disponibilidad16" Association="KATHIECentralModel.FK_UsuarioHorario_Disponibilidad16">
+            <End Role="Disponibilidad" EntitySet="Disponibilidads" />
+            <End Role="UsuarioHorario" EntitySet="UsuarioHorarios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsuarioHorario_Disponibilidad17" Association="KATHIECentralModel.FK_UsuarioHorario_Disponibilidad17">
+            <End Role="Disponibilidad" EntitySet="Disponibilidads" />
+            <End Role="UsuarioHorario" EntitySet="UsuarioHorarios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsuarioHorario_Disponibilidad18" Association="KATHIECentralModel.FK_UsuarioHorario_Disponibilidad18">
+            <End Role="Disponibilidad" EntitySet="Disponibilidads" />
+            <End Role="UsuarioHorario" EntitySet="UsuarioHorarios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsuarioHorario_Disponibilidad19" Association="KATHIECentralModel.FK_UsuarioHorario_Disponibilidad19">
+            <End Role="Disponibilidad" EntitySet="Disponibilidads" />
+            <End Role="UsuarioHorario" EntitySet="UsuarioHorarios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsuarioHorario_Disponibilidad2" Association="KATHIECentralModel.FK_UsuarioHorario_Disponibilidad2">
+            <End Role="Disponibilidad" EntitySet="Disponibilidads" />
+            <End Role="UsuarioHorario" EntitySet="UsuarioHorarios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsuarioHorario_Disponibilidad20" Association="KATHIECentralModel.FK_UsuarioHorario_Disponibilidad20">
+            <End Role="Disponibilidad" EntitySet="Disponibilidads" />
+            <End Role="UsuarioHorario" EntitySet="UsuarioHorarios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsuarioHorario_Disponibilidad21" Association="KATHIECentralModel.FK_UsuarioHorario_Disponibilidad21">
+            <End Role="Disponibilidad" EntitySet="Disponibilidads" />
+            <End Role="UsuarioHorario" EntitySet="UsuarioHorarios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsuarioHorario_Disponibilidad22" Association="KATHIECentralModel.FK_UsuarioHorario_Disponibilidad22">
+            <End Role="Disponibilidad" EntitySet="Disponibilidads" />
+            <End Role="UsuarioHorario" EntitySet="UsuarioHorarios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsuarioHorario_Disponibilidad23" Association="KATHIECentralModel.FK_UsuarioHorario_Disponibilidad23">
+            <End Role="Disponibilidad" EntitySet="Disponibilidads" />
+            <End Role="UsuarioHorario" EntitySet="UsuarioHorarios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsuarioHorario_Disponibilidad24" Association="KATHIECentralModel.FK_UsuarioHorario_Disponibilidad24">
+            <End Role="Disponibilidad" EntitySet="Disponibilidads" />
+            <End Role="UsuarioHorario" EntitySet="UsuarioHorarios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsuarioHorario_Disponibilidad3" Association="KATHIECentralModel.FK_UsuarioHorario_Disponibilidad3">
+            <End Role="Disponibilidad" EntitySet="Disponibilidads" />
+            <End Role="UsuarioHorario" EntitySet="UsuarioHorarios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsuarioHorario_Disponibilidad4" Association="KATHIECentralModel.FK_UsuarioHorario_Disponibilidad4">
+            <End Role="Disponibilidad" EntitySet="Disponibilidads" />
+            <End Role="UsuarioHorario" EntitySet="UsuarioHorarios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsuarioHorario_Disponibilidad5" Association="KATHIECentralModel.FK_UsuarioHorario_Disponibilidad5">
+            <End Role="Disponibilidad" EntitySet="Disponibilidads" />
+            <End Role="UsuarioHorario" EntitySet="UsuarioHorarios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsuarioHorario_Disponibilidad6" Association="KATHIECentralModel.FK_UsuarioHorario_Disponibilidad6">
+            <End Role="Disponibilidad" EntitySet="Disponibilidads" />
+            <End Role="UsuarioHorario" EntitySet="UsuarioHorarios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsuarioHorario_Disponibilidad7" Association="KATHIECentralModel.FK_UsuarioHorario_Disponibilidad7">
+            <End Role="Disponibilidad" EntitySet="Disponibilidads" />
+            <End Role="UsuarioHorario" EntitySet="UsuarioHorarios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsuarioHorario_Disponibilidad8" Association="KATHIECentralModel.FK_UsuarioHorario_Disponibilidad8">
+            <End Role="Disponibilidad" EntitySet="Disponibilidads" />
+            <End Role="UsuarioHorario" EntitySet="UsuarioHorarios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsuarioHorario_Disponibilidad9" Association="KATHIECentralModel.FK_UsuarioHorario_Disponibilidad9">
+            <End Role="Disponibilidad" EntitySet="Disponibilidads" />
+            <End Role="UsuarioHorario" EntitySet="UsuarioHorarios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Evento_Estado" Association="KATHIECentralModel.FK_Evento_Estado">
+            <End Role="Estado" EntitySet="Estadoes" />
+            <End Role="Evento" EntitySet="Eventoes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Evento_Usuario" Association="KATHIECentralModel.FK_Evento_Usuario">
+            <End Role="Usuario" EntitySet="Usuarios" />
+            <End Role="Evento" EntitySet="Eventoes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EventoUsuario_Evento" Association="KATHIECentralModel.FK_EventoUsuario_Evento">
+            <End Role="Evento" EntitySet="Eventoes" />
+            <End Role="EventoUsuario" EntitySet="EventoUsuarios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EventoUsuario_Usuario" Association="KATHIECentralModel.FK_EventoUsuario_Usuario">
+            <End Role="Usuario" EntitySet="Usuarios" />
+            <End Role="EventoUsuario" EntitySet="EventoUsuarios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EventoUsuarioHorario_EventoUsuario" Association="KATHIECentralModel.FK_EventoUsuarioHorario_EventoUsuario">
+            <End Role="EventoUsuario" EntitySet="EventoUsuarios" />
+            <End Role="EventoUsuarioHorario" EntitySet="EventoUsuarioHorarios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsuarioHorario_Usuario" Association="KATHIECentralModel.FK_UsuarioHorario_Usuario">
+            <End Role="Usuario" EntitySet="Usuarios" />
+            <End Role="UsuarioHorario" EntitySet="UsuarioHorarios" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Dia">
+          <Key>
+            <PropertyRef Name="IDDia" />
+          </Key>
+          <Property Name="IDDia" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="UsuarioHorarios" Relationship="KATHIECentralModel.FK_UsuarioHorario_Dia" FromRole="Dia" ToRole="UsuarioHorario" />
+        </EntityType>
+        <EntityType Name="Disponibilidad">
+          <Key>
+            <PropertyRef Name="IDDisponibilidad" />
+          </Key>
+          <Property Name="IDDisponibilidad" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="EventoUsuarioHorarios" Relationship="KATHIECentralModel.FK_EventoUsuarioHorario_Disponibilidad1" FromRole="Disponibilidad" ToRole="EventoUsuarioHorario" />
+          <NavigationProperty Name="EventoUsuarioHorarios1" Relationship="KATHIECentralModel.FK_EventoUsuarioHorario_Disponibilidad10" FromRole="Disponibilidad" ToRole="EventoUsuarioHorario" />
+          <NavigationProperty Name="EventoUsuarioHorarios2" Relationship="KATHIECentralModel.FK_EventoUsuarioHorario_Disponibilidad11" FromRole="Disponibilidad" ToRole="EventoUsuarioHorario" />
+          <NavigationProperty Name="EventoUsuarioHorarios3" Relationship="KATHIECentralModel.FK_EventoUsuarioHorario_Disponibilidad12" FromRole="Disponibilidad" ToRole="EventoUsuarioHorario" />
+          <NavigationProperty Name="EventoUsuarioHorarios4" Relationship="KATHIECentralModel.FK_EventoUsuarioHorario_Disponibilidad13" FromRole="Disponibilidad" ToRole="EventoUsuarioHorario" />
+          <NavigationProperty Name="EventoUsuarioHorarios5" Relationship="KATHIECentralModel.FK_EventoUsuarioHorario_Disponibilidad14" FromRole="Disponibilidad" ToRole="EventoUsuarioHorario" />
+          <NavigationProperty Name="EventoUsuarioHorarios6" Relationship="KATHIECentralModel.FK_EventoUsuarioHorario_Disponibilidad15" FromRole="Disponibilidad" ToRole="EventoUsuarioHorario" />
+          <NavigationProperty Name="EventoUsuarioHorarios7" Relationship="KATHIECentralModel.FK_EventoUsuarioHorario_Disponibilidad16" FromRole="Disponibilidad" ToRole="EventoUsuarioHorario" />
+          <NavigationProperty Name="EventoUsuarioHorarios8" Relationship="KATHIECentralModel.FK_EventoUsuarioHorario_Disponibilidad17" FromRole="Disponibilidad" ToRole="EventoUsuarioHorario" />
+          <NavigationProperty Name="EventoUsuarioHorarios9" Relationship="KATHIECentralModel.FK_EventoUsuarioHorario_Disponibilidad18" FromRole="Disponibilidad" ToRole="EventoUsuarioHorario" />
+          <NavigationProperty Name="EventoUsuarioHorarios10" Relationship="KATHIECentralModel.FK_EventoUsuarioHorario_Disponibilidad19" FromRole="Disponibilidad" ToRole="EventoUsuarioHorario" />
+          <NavigationProperty Name="EventoUsuarioHorarios11" Relationship="KATHIECentralModel.FK_EventoUsuarioHorario_Disponibilidad2" FromRole="Disponibilidad" ToRole="EventoUsuarioHorario" />
+          <NavigationProperty Name="EventoUsuarioHorarios12" Relationship="KATHIECentralModel.FK_EventoUsuarioHorario_Disponibilidad20" FromRole="Disponibilidad" ToRole="EventoUsuarioHorario" />
+          <NavigationProperty Name="EventoUsuarioHorarios13" Relationship="KATHIECentralModel.FK_EventoUsuarioHorario_Disponibilidad21" FromRole="Disponibilidad" ToRole="EventoUsuarioHorario" />
+          <NavigationProperty Name="EventoUsuarioHorarios14" Relationship="KATHIECentralModel.FK_EventoUsuarioHorario_Disponibilidad22" FromRole="Disponibilidad" ToRole="EventoUsuarioHorario" />
+          <NavigationProperty Name="EventoUsuarioHorarios15" Relationship="KATHIECentralModel.FK_EventoUsuarioHorario_Disponibilidad23" FromRole="Disponibilidad" ToRole="EventoUsuarioHorario" />
+          <NavigationProperty Name="EventoUsuarioHorarios16" Relationship="KATHIECentralModel.FK_EventoUsuarioHorario_Disponibilidad24" FromRole="Disponibilidad" ToRole="EventoUsuarioHorario" />
+          <NavigationProperty Name="EventoUsuarioHorarios17" Relationship="KATHIECentralModel.FK_EventoUsuarioHorario_Disponibilidad3" FromRole="Disponibilidad" ToRole="EventoUsuarioHorario" />
+          <NavigationProperty Name="EventoUsuarioHorarios18" Relationship="KATHIECentralModel.FK_EventoUsuarioHorario_Disponibilidad4" FromRole="Disponibilidad" ToRole="EventoUsuarioHorario" />
+          <NavigationProperty Name="EventoUsuarioHorarios19" Relationship="KATHIECentralModel.FK_EventoUsuarioHorario_Disponibilidad5" FromRole="Disponibilidad" ToRole="EventoUsuarioHorario" />
+          <NavigationProperty Name="EventoUsuarioHorarios20" Relationship="KATHIECentralModel.FK_EventoUsuarioHorario_Disponibilidad6" FromRole="Disponibilidad" ToRole="EventoUsuarioHorario" />
+          <NavigationProperty Name="EventoUsuarioHorarios21" Relationship="KATHIECentralModel.FK_EventoUsuarioHorario_Disponibilidad7" FromRole="Disponibilidad" ToRole="EventoUsuarioHorario" />
+          <NavigationProperty Name="EventoUsuarioHorarios22" Relationship="KATHIECentralModel.FK_EventoUsuarioHorario_Disponibilidad8" FromRole="Disponibilidad" ToRole="EventoUsuarioHorario" />
+          <NavigationProperty Name="EventoUsuarioHorarios23" Relationship="KATHIECentralModel.FK_EventoUsuarioHorario_Disponibilidad9" FromRole="Disponibilidad" ToRole="EventoUsuarioHorario" />
+          <NavigationProperty Name="UsuarioHorarios" Relationship="KATHIECentralModel.FK_UsuarioHorario_Disponibilidad1" FromRole="Disponibilidad" ToRole="UsuarioHorario" />
+          <NavigationProperty Name="UsuarioHorarios1" Relationship="KATHIECentralModel.FK_UsuarioHorario_Disponibilidad10" FromRole="Disponibilidad" ToRole="UsuarioHorario" />
+          <NavigationProperty Name="UsuarioHorarios2" Relationship="KATHIECentralModel.FK_UsuarioHorario_Disponibilidad11" FromRole="Disponibilidad" ToRole="UsuarioHorario" />
+          <NavigationProperty Name="UsuarioHorarios3" Relationship="KATHIECentralModel.FK_UsuarioHorario_Disponibilidad12" FromRole="Disponibilidad" ToRole="UsuarioHorario" />
+          <NavigationProperty Name="UsuarioHorarios4" Relationship="KATHIECentralModel.FK_UsuarioHorario_Disponibilidad13" FromRole="Disponibilidad" ToRole="UsuarioHorario" />
+          <NavigationProperty Name="UsuarioHorarios5" Relationship="KATHIECentralModel.FK_UsuarioHorario_Disponibilidad14" FromRole="Disponibilidad" ToRole="UsuarioHorario" />
+          <NavigationProperty Name="UsuarioHorarios6" Relationship="KATHIECentralModel.FK_UsuarioHorario_Disponibilidad15" FromRole="Disponibilidad" ToRole="UsuarioHorario" />
+          <NavigationProperty Name="UsuarioHorarios7" Relationship="KATHIECentralModel.FK_UsuarioHorario_Disponibilidad16" FromRole="Disponibilidad" ToRole="UsuarioHorario" />
+          <NavigationProperty Name="UsuarioHorarios8" Relationship="KATHIECentralModel.FK_UsuarioHorario_Disponibilidad17" FromRole="Disponibilidad" ToRole="UsuarioHorario" />
+          <NavigationProperty Name="UsuarioHorarios9" Relationship="KATHIECentralModel.FK_UsuarioHorario_Disponibilidad18" FromRole="Disponibilidad" ToRole="UsuarioHorario" />
+          <NavigationProperty Name="UsuarioHorarios10" Relationship="KATHIECentralModel.FK_UsuarioHorario_Disponibilidad19" FromRole="Disponibilidad" ToRole="UsuarioHorario" />
+          <NavigationProperty Name="UsuarioHorarios11" Relationship="KATHIECentralModel.FK_UsuarioHorario_Disponibilidad2" FromRole="Disponibilidad" ToRole="UsuarioHorario" />
+          <NavigationProperty Name="UsuarioHorarios12" Relationship="KATHIECentralModel.FK_UsuarioHorario_Disponibilidad20" FromRole="Disponibilidad" ToRole="UsuarioHorario" />
+          <NavigationProperty Name="UsuarioHorarios13" Relationship="KATHIECentralModel.FK_UsuarioHorario_Disponibilidad21" FromRole="Disponibilidad" ToRole="UsuarioHorario" />
+          <NavigationProperty Name="UsuarioHorarios14" Relationship="KATHIECentralModel.FK_UsuarioHorario_Disponibilidad22" FromRole="Disponibilidad" ToRole="UsuarioHorario" />
+          <NavigationProperty Name="UsuarioHorarios15" Relationship="KATHIECentralModel.FK_UsuarioHorario_Disponibilidad23" FromRole="Disponibilidad" ToRole="UsuarioHorario" />
+          <NavigationProperty Name="UsuarioHorarios16" Relationship="KATHIECentralModel.FK_UsuarioHorario_Disponibilidad24" FromRole="Disponibilidad" ToRole="UsuarioHorario" />
+          <NavigationProperty Name="UsuarioHorarios17" Relationship="KATHIECentralModel.FK_UsuarioHorario_Disponibilidad3" FromRole="Disponibilidad" ToRole="UsuarioHorario" />
+          <NavigationProperty Name="UsuarioHorarios18" Relationship="KATHIECentralModel.FK_UsuarioHorario_Disponibilidad4" FromRole="Disponibilidad" ToRole="UsuarioHorario" />
+          <NavigationProperty Name="UsuarioHorarios19" Relationship="KATHIECentralModel.FK_UsuarioHorario_Disponibilidad5" FromRole="Disponibilidad" ToRole="UsuarioHorario" />
+          <NavigationProperty Name="UsuarioHorarios20" Relationship="KATHIECentralModel.FK_UsuarioHorario_Disponibilidad6" FromRole="Disponibilidad" ToRole="UsuarioHorario" />
+          <NavigationProperty Name="UsuarioHorarios21" Relationship="KATHIECentralModel.FK_UsuarioHorario_Disponibilidad7" FromRole="Disponibilidad" ToRole="UsuarioHorario" />
+          <NavigationProperty Name="UsuarioHorarios22" Relationship="KATHIECentralModel.FK_UsuarioHorario_Disponibilidad8" FromRole="Disponibilidad" ToRole="UsuarioHorario" />
+          <NavigationProperty Name="UsuarioHorarios23" Relationship="KATHIECentralModel.FK_UsuarioHorario_Disponibilidad9" FromRole="Disponibilidad" ToRole="UsuarioHorario" />
+        </EntityType>
+        <EntityType Name="Estado">
+          <Key>
+            <PropertyRef Name="IDEstado" />
+          </Key>
+          <Property Name="IDEstado" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Eventoes" Relationship="KATHIECentralModel.FK_Evento_Estado" FromRole="Estado" ToRole="Evento" />
+        </EntityType>
+        <EntityType Name="Evento">
+          <Key>
+            <PropertyRef Name="IDEvento" />
+          </Key>
+          <Property Name="IDEvento" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Titulo" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Comentarios" Type="String" Nullable="false" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Name="FechaDesde" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="FechaHasta" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="IDEstado" Type="Int32" Nullable="false" />
+          <Property Name="IDUsuario" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Estado" Relationship="KATHIECentralModel.FK_Evento_Estado" FromRole="Evento" ToRole="Estado" />
+          <NavigationProperty Name="Usuario" Relationship="KATHIECentralModel.FK_Evento_Usuario" FromRole="Evento" ToRole="Usuario" />
+          <NavigationProperty Name="EventoUsuarios" Relationship="KATHIECentralModel.FK_EventoUsuario_Evento" FromRole="Evento" ToRole="EventoUsuario" />
+        </EntityType>
+        <EntityType Name="EventoUsuario">
+          <Key>
+            <PropertyRef Name="IDEventoUsuario" />
+          </Key>
+          <Property Name="IDEventoUsuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IDEvento" Type="Int32" Nullable="false" />
+          <Property Name="IDUsuario" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Evento" Relationship="KATHIECentralModel.FK_EventoUsuario_Evento" FromRole="EventoUsuario" ToRole="Evento" />
+          <NavigationProperty Name="Usuario" Relationship="KATHIECentralModel.FK_EventoUsuario_Usuario" FromRole="EventoUsuario" ToRole="Usuario" />
+          <NavigationProperty Name="EventoUsuarioHorarios" Relationship="KATHIECentralModel.FK_EventoUsuarioHorario_EventoUsuario" FromRole="EventoUsuario" ToRole="EventoUsuarioHorario" />
+        </EntityType>
+        <EntityType Name="EventoUsuarioHorario">
+          <Key>
+            <PropertyRef Name="IDEventoUsuarioHorario" />
+          </Key>
+          <Property Name="IDEventoUsuarioHorario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IDEventoUsuario" Type="Int32" Nullable="false" />
+          <Property Name="Dia" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Hour_1" Type="Int32" Nullable="false" />
+          <Property Name="Hour_2" Type="Int32" Nullable="false" />
+          <Property Name="Hour_3" Type="Int32" Nullable="false" />
+          <Property Name="Hour_4" Type="Int32" Nullable="false" />
+          <Property Name="Hour_5" Type="Int32" Nullable="false" />
+          <Property Name="Hour_6" Type="Int32" Nullable="false" />
+          <Property Name="Hour_7" Type="Int32" Nullable="false" />
+          <Property Name="Hour_8" Type="Int32" Nullable="false" />
+          <Property Name="Hour_9" Type="Int32" Nullable="false" />
+          <Property Name="Hour_10" Type="Int32" Nullable="false" />
+          <Property Name="Hour_11" Type="Int32" Nullable="false" />
+          <Property Name="Hour_12" Type="Int32" Nullable="false" />
+          <Property Name="Hour_13" Type="Int32" Nullable="false" />
+          <Property Name="Hour_14" Type="Int32" Nullable="false" />
+          <Property Name="Hour_15" Type="Int32" Nullable="false" />
+          <Property Name="Hour_16" Type="Int32" Nullable="false" />
+          <Property Name="Hour_17" Type="Int32" Nullable="false" />
+          <Property Name="Hour_18" Type="Int32" Nullable="false" />
+          <Property Name="Hour_19" Type="Int32" Nullable="false" />
+          <Property Name="Hour_20" Type="Int32" Nullable="false" />
+          <Property Name="Hour_21" Type="Int32" Nullable="false" />
+          <Property Name="Hour_22" Type="Int32" Nullable="false" />
+          <Property Name="Hour_23" Type="Int32" Nullable="false" />
+          <Property Name="Hour_24" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Disponibilidad" Relationship="KATHIECentralModel.FK_EventoUsuarioHorario_Disponibilidad1" FromRole="EventoUsuarioHorario" ToRole="Disponibilidad" />
+          <NavigationProperty Name="Disponibilidad1" Relationship="KATHIECentralModel.FK_EventoUsuarioHorario_Disponibilidad10" FromRole="EventoUsuarioHorario" ToRole="Disponibilidad" />
+          <NavigationProperty Name="Disponibilidad2" Relationship="KATHIECentralModel.FK_EventoUsuarioHorario_Disponibilidad11" FromRole="EventoUsuarioHorario" ToRole="Disponibilidad" />
+          <NavigationProperty Name="Disponibilidad3" Relationship="KATHIECentralModel.FK_EventoUsuarioHorario_Disponibilidad12" FromRole="EventoUsuarioHorario" ToRole="Disponibilidad" />
+          <NavigationProperty Name="Disponibilidad4" Relationship="KATHIECentralModel.FK_EventoUsuarioHorario_Disponibilidad13" FromRole="EventoUsuarioHorario" ToRole="Disponibilidad" />
+          <NavigationProperty Name="Disponibilidad5" Relationship="KATHIECentralModel.FK_EventoUsuarioHorario_Disponibilidad14" FromRole="EventoUsuarioHorario" ToRole="Disponibilidad" />
+          <NavigationProperty Name="Disponibilidad6" Relationship="KATHIECentralModel.FK_EventoUsuarioHorario_Disponibilidad15" FromRole="EventoUsuarioHorario" ToRole="Disponibilidad" />
+          <NavigationProperty Name="Disponibilidad7" Relationship="KATHIECentralModel.FK_EventoUsuarioHorario_Disponibilidad16" FromRole="EventoUsuarioHorario" ToRole="Disponibilidad" />
+          <NavigationProperty Name="Disponibilidad8" Relationship="KATHIECentralModel.FK_EventoUsuarioHorario_Disponibilidad17" FromRole="EventoUsuarioHorario" ToRole="Disponibilidad" />
+          <NavigationProperty Name="Disponibilidad9" Relationship="KATHIECentralModel.FK_EventoUsuarioHorario_Disponibilidad18" FromRole="EventoUsuarioHorario" ToRole="Disponibilidad" />
+          <NavigationProperty Name="Disponibilidad10" Relationship="KATHIECentralModel.FK_EventoUsuarioHorario_Disponibilidad19" FromRole="EventoUsuarioHorario" ToRole="Disponibilidad" />
+          <NavigationProperty Name="Disponibilidad11" Relationship="KATHIECentralModel.FK_EventoUsuarioHorario_Disponibilidad2" FromRole="EventoUsuarioHorario" ToRole="Disponibilidad" />
+          <NavigationProperty Name="Disponibilidad12" Relationship="KATHIECentralModel.FK_EventoUsuarioHorario_Disponibilidad20" FromRole="EventoUsuarioHorario" ToRole="Disponibilidad" />
+          <NavigationProperty Name="Disponibilidad13" Relationship="KATHIECentralModel.FK_EventoUsuarioHorario_Disponibilidad21" FromRole="EventoUsuarioHorario" ToRole="Disponibilidad" />
+          <NavigationProperty Name="Disponibilidad14" Relationship="KATHIECentralModel.FK_EventoUsuarioHorario_Disponibilidad22" FromRole="EventoUsuarioHorario" ToRole="Disponibilidad" />
+          <NavigationProperty Name="Disponibilidad15" Relationship="KATHIECentralModel.FK_EventoUsuarioHorario_Disponibilidad23" FromRole="EventoUsuarioHorario" ToRole="Disponibilidad" />
+          <NavigationProperty Name="Disponibilidad16" Relationship="KATHIECentralModel.FK_EventoUsuarioHorario_Disponibilidad24" FromRole="EventoUsuarioHorario" ToRole="Disponibilidad" />
+          <NavigationProperty Name="Disponibilidad17" Relationship="KATHIECentralModel.FK_EventoUsuarioHorario_Disponibilidad3" FromRole="EventoUsuarioHorario" ToRole="Disponibilidad" />
+          <NavigationProperty Name="Disponibilidad18" Relationship="KATHIECentralModel.FK_EventoUsuarioHorario_Disponibilidad4" FromRole="EventoUsuarioHorario" ToRole="Disponibilidad" />
+          <NavigationProperty Name="Disponibilidad19" Relationship="KATHIECentralModel.FK_EventoUsuarioHorario_Disponibilidad5" FromRole="EventoUsuarioHorario" ToRole="Disponibilidad" />
+          <NavigationProperty Name="Disponibilidad20" Relationship="KATHIECentralModel.FK_EventoUsuarioHorario_Disponibilidad6" FromRole="EventoUsuarioHorario" ToRole="Disponibilidad" />
+          <NavigationProperty Name="Disponibilidad21" Relationship="KATHIECentralModel.FK_EventoUsuarioHorario_Disponibilidad7" FromRole="EventoUsuarioHorario" ToRole="Disponibilidad" />
+          <NavigationProperty Name="Disponibilidad22" Relationship="KATHIECentralModel.FK_EventoUsuarioHorario_Disponibilidad8" FromRole="EventoUsuarioHorario" ToRole="Disponibilidad" />
+          <NavigationProperty Name="Disponibilidad23" Relationship="KATHIECentralModel.FK_EventoUsuarioHorario_Disponibilidad9" FromRole="EventoUsuarioHorario" ToRole="Disponibilidad" />
+          <NavigationProperty Name="EventoUsuario" Relationship="KATHIECentralModel.FK_EventoUsuarioHorario_EventoUsuario" FromRole="EventoUsuarioHorario" ToRole="EventoUsuario" />
+        </EntityType>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="IDUsuario" />
+          </Key>
+          <Property Name="IDUsuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Username" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LastName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Eventoes" Relationship="KATHIECentralModel.FK_Evento_Usuario" FromRole="Usuario" ToRole="Evento" />
+          <NavigationProperty Name="EventoUsuarios" Relationship="KATHIECentralModel.FK_EventoUsuario_Usuario" FromRole="Usuario" ToRole="EventoUsuario" />
+          <NavigationProperty Name="UsuarioHorarios" Relationship="KATHIECentralModel.FK_UsuarioHorario_Usuario" FromRole="Usuario" ToRole="UsuarioHorario" />
+        </EntityType>
+        <EntityType Name="UsuarioHorario">
+          <Key>
+            <PropertyRef Name="IDUsuarioHorario" />
+          </Key>
+          <Property Name="IDUsuarioHorario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IDUsuario" Type="Int32" Nullable="false" />
+          <Property Name="IDDia" Type="Int32" Nullable="false" />
+          <Property Name="Hour_1" Type="Int32" Nullable="false" />
+          <Property Name="Hour_2" Type="Int32" Nullable="false" />
+          <Property Name="Hour_3" Type="Int32" Nullable="false" />
+          <Property Name="Hour_4" Type="Int32" Nullable="false" />
+          <Property Name="Hour_5" Type="Int32" Nullable="false" />
+          <Property Name="Hour_6" Type="Int32" Nullable="false" />
+          <Property Name="Hour_7" Type="Int32" Nullable="false" />
+          <Property Name="Hour_8" Type="Int32" Nullable="false" />
+          <Property Name="Hour_9" Type="Int32" Nullable="false" />
+          <Property Name="Hour_10" Type="Int32" Nullable="false" />
+          <Property Name="Hour_11" Type="Int32" Nullable="false" />
+          <Property Name="Hour_12" Type="Int32" Nullable="false" />
+          <Property Name="Hour_13" Type="Int32" Nullable="false" />
+          <Property Name="Hour_14" Type="Int32" Nullable="false" />
+          <Property Name="Hour_15" Type="Int32" Nullable="false" />
+          <Property Name="Hour_16" Type="Int32" Nullable="false" />
+          <Property Name="Hour_17" Type="Int32" Nullable="false" />
+          <Property Name="Hour_18" Type="Int32" Nullable="false" />
+          <Property Name="Hour_19" Type="Int32" Nullable="false" />
+          <Property Name="Hour_20" Type="Int32" Nullable="false" />
+          <Property Name="Hour_21" Type="Int32" Nullable="false" />
+          <Property Name="Hour_22" Type="Int32" Nullable="false" />
+          <Property Name="Hour_23" Type="Int32" Nullable="false" />
+          <Property Name="Hour_24" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Dia" Relationship="KATHIECentralModel.FK_UsuarioHorario_Dia" FromRole="UsuarioHorario" ToRole="Dia" />
+          <NavigationProperty Name="Disponibilidad" Relationship="KATHIECentralModel.FK_UsuarioHorario_Disponibilidad1" FromRole="UsuarioHorario" ToRole="Disponibilidad" />
+          <NavigationProperty Name="Disponibilidad1" Relationship="KATHIECentralModel.FK_UsuarioHorario_Disponibilidad10" FromRole="UsuarioHorario" ToRole="Disponibilidad" />
+          <NavigationProperty Name="Disponibilidad2" Relationship="KATHIECentralModel.FK_UsuarioHorario_Disponibilidad11" FromRole="UsuarioHorario" ToRole="Disponibilidad" />
+          <NavigationProperty Name="Disponibilidad3" Relationship="KATHIECentralModel.FK_UsuarioHorario_Disponibilidad12" FromRole="UsuarioHorario" ToRole="Disponibilidad" />
+          <NavigationProperty Name="Disponibilidad4" Relationship="KATHIECentralModel.FK_UsuarioHorario_Disponibilidad13" FromRole="UsuarioHorario" ToRole="Disponibilidad" />
+          <NavigationProperty Name="Disponibilidad5" Relationship="KATHIECentralModel.FK_UsuarioHorario_Disponibilidad14" FromRole="UsuarioHorario" ToRole="Disponibilidad" />
+          <NavigationProperty Name="Disponibilidad6" Relationship="KATHIECentralModel.FK_UsuarioHorario_Disponibilidad15" FromRole="UsuarioHorario" ToRole="Disponibilidad" />
+          <NavigationProperty Name="Disponibilidad7" Relationship="KATHIECentralModel.FK_UsuarioHorario_Disponibilidad16" FromRole="UsuarioHorario" ToRole="Disponibilidad" />
+          <NavigationProperty Name="Disponibilidad8" Relationship="KATHIECentralModel.FK_UsuarioHorario_Disponibilidad17" FromRole="UsuarioHorario" ToRole="Disponibilidad" />
+          <NavigationProperty Name="Disponibilidad9" Relationship="KATHIECentralModel.FK_UsuarioHorario_Disponibilidad18" FromRole="UsuarioHorario" ToRole="Disponibilidad" />
+          <NavigationProperty Name="Disponibilidad10" Relationship="KATHIECentralModel.FK_UsuarioHorario_Disponibilidad19" FromRole="UsuarioHorario" ToRole="Disponibilidad" />
+          <NavigationProperty Name="Disponibilidad11" Relationship="KATHIECentralModel.FK_UsuarioHorario_Disponibilidad2" FromRole="UsuarioHorario" ToRole="Disponibilidad" />
+          <NavigationProperty Name="Disponibilidad12" Relationship="KATHIECentralModel.FK_UsuarioHorario_Disponibilidad20" FromRole="UsuarioHorario" ToRole="Disponibilidad" />
+          <NavigationProperty Name="Disponibilidad13" Relationship="KATHIECentralModel.FK_UsuarioHorario_Disponibilidad21" FromRole="UsuarioHorario" ToRole="Disponibilidad" />
+          <NavigationProperty Name="Disponibilidad14" Relationship="KATHIECentralModel.FK_UsuarioHorario_Disponibilidad22" FromRole="UsuarioHorario" ToRole="Disponibilidad" />
+          <NavigationProperty Name="Disponibilidad15" Relationship="KATHIECentralModel.FK_UsuarioHorario_Disponibilidad23" FromRole="UsuarioHorario" ToRole="Disponibilidad" />
+          <NavigationProperty Name="Disponibilidad16" Relationship="KATHIECentralModel.FK_UsuarioHorario_Disponibilidad24" FromRole="UsuarioHorario" ToRole="Disponibilidad" />
+          <NavigationProperty Name="Disponibilidad17" Relationship="KATHIECentralModel.FK_UsuarioHorario_Disponibilidad3" FromRole="UsuarioHorario" ToRole="Disponibilidad" />
+          <NavigationProperty Name="Disponibilidad18" Relationship="KATHIECentralModel.FK_UsuarioHorario_Disponibilidad4" FromRole="UsuarioHorario" ToRole="Disponibilidad" />
+          <NavigationProperty Name="Disponibilidad19" Relationship="KATHIECentralModel.FK_UsuarioHorario_Disponibilidad5" FromRole="UsuarioHorario" ToRole="Disponibilidad" />
+          <NavigationProperty Name="Disponibilidad20" Relationship="KATHIECentralModel.FK_UsuarioHorario_Disponibilidad6" FromRole="UsuarioHorario" ToRole="Disponibilidad" />
+          <NavigationProperty Name="Disponibilidad21" Relationship="KATHIECentralModel.FK_UsuarioHorario_Disponibilidad7" FromRole="UsuarioHorario" ToRole="Disponibilidad" />
+          <NavigationProperty Name="Disponibilidad22" Relationship="KATHIECentralModel.FK_UsuarioHorario_Disponibilidad8" FromRole="UsuarioHorario" ToRole="Disponibilidad" />
+          <NavigationProperty Name="Disponibilidad23" Relationship="KATHIECentralModel.FK_UsuarioHorario_Disponibilidad9" FromRole="UsuarioHorario" ToRole="Disponibilidad" />
+          <NavigationProperty Name="Usuario" Relationship="KATHIECentralModel.FK_UsuarioHorario_Usuario" FromRole="UsuarioHorario" ToRole="Usuario" />
+        </EntityType>
+        <Association Name="FK_UsuarioHorario_Dia">
+          <End Type="KATHIECentralModel.Dia" Role="Dia" Multiplicity="1" />
+          <End Type="KATHIECentralModel.UsuarioHorario" Role="UsuarioHorario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Dia">
+              <PropertyRef Name="IDDia" />
+            </Principal>
+            <Dependent Role="UsuarioHorario">
+              <PropertyRef Name="IDDia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EventoUsuarioHorario_Disponibilidad1">
+          <End Type="KATHIECentralModel.Disponibilidad" Role="Disponibilidad" Multiplicity="1" />
+          <End Type="KATHIECentralModel.EventoUsuarioHorario" Role="EventoUsuarioHorario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Disponibilidad">
+              <PropertyRef Name="IDDisponibilidad" />
+            </Principal>
+            <Dependent Role="EventoUsuarioHorario">
+              <PropertyRef Name="Hour_1" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EventoUsuarioHorario_Disponibilidad10">
+          <End Type="KATHIECentralModel.Disponibilidad" Role="Disponibilidad" Multiplicity="1" />
+          <End Type="KATHIECentralModel.EventoUsuarioHorario" Role="EventoUsuarioHorario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Disponibilidad">
+              <PropertyRef Name="IDDisponibilidad" />
+            </Principal>
+            <Dependent Role="EventoUsuarioHorario">
+              <PropertyRef Name="Hour_10" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EventoUsuarioHorario_Disponibilidad11">
+          <End Type="KATHIECentralModel.Disponibilidad" Role="Disponibilidad" Multiplicity="1" />
+          <End Type="KATHIECentralModel.EventoUsuarioHorario" Role="EventoUsuarioHorario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Disponibilidad">
+              <PropertyRef Name="IDDisponibilidad" />
+            </Principal>
+            <Dependent Role="EventoUsuarioHorario">
+              <PropertyRef Name="Hour_11" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EventoUsuarioHorario_Disponibilidad12">
+          <End Type="KATHIECentralModel.Disponibilidad" Role="Disponibilidad" Multiplicity="1" />
+          <End Type="KATHIECentralModel.EventoUsuarioHorario" Role="EventoUsuarioHorario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Disponibilidad">
+              <PropertyRef Name="IDDisponibilidad" />
+            </Principal>
+            <Dependent Role="EventoUsuarioHorario">
+              <PropertyRef Name="Hour_12" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EventoUsuarioHorario_Disponibilidad13">
+          <End Type="KATHIECentralModel.Disponibilidad" Role="Disponibilidad" Multiplicity="1" />
+          <End Type="KATHIECentralModel.EventoUsuarioHorario" Role="EventoUsuarioHorario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Disponibilidad">
+              <PropertyRef Name="IDDisponibilidad" />
+            </Principal>
+            <Dependent Role="EventoUsuarioHorario">
+              <PropertyRef Name="Hour_13" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EventoUsuarioHorario_Disponibilidad14">
+          <End Type="KATHIECentralModel.Disponibilidad" Role="Disponibilidad" Multiplicity="1" />
+          <End Type="KATHIECentralModel.EventoUsuarioHorario" Role="EventoUsuarioHorario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Disponibilidad">
+              <PropertyRef Name="IDDisponibilidad" />
+            </Principal>
+            <Dependent Role="EventoUsuarioHorario">
+              <PropertyRef Name="Hour_14" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EventoUsuarioHorario_Disponibilidad15">
+          <End Type="KATHIECentralModel.Disponibilidad" Role="Disponibilidad" Multiplicity="1" />
+          <End Type="KATHIECentralModel.EventoUsuarioHorario" Role="EventoUsuarioHorario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Disponibilidad">
+              <PropertyRef Name="IDDisponibilidad" />
+            </Principal>
+            <Dependent Role="EventoUsuarioHorario">
+              <PropertyRef Name="Hour_15" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EventoUsuarioHorario_Disponibilidad16">
+          <End Type="KATHIECentralModel.Disponibilidad" Role="Disponibilidad" Multiplicity="1" />
+          <End Type="KATHIECentralModel.EventoUsuarioHorario" Role="EventoUsuarioHorario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Disponibilidad">
+              <PropertyRef Name="IDDisponibilidad" />
+            </Principal>
+            <Dependent Role="EventoUsuarioHorario">
+              <PropertyRef Name="Hour_16" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EventoUsuarioHorario_Disponibilidad17">
+          <End Type="KATHIECentralModel.Disponibilidad" Role="Disponibilidad" Multiplicity="1" />
+          <End Type="KATHIECentralModel.EventoUsuarioHorario" Role="EventoUsuarioHorario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Disponibilidad">
+              <PropertyRef Name="IDDisponibilidad" />
+            </Principal>
+            <Dependent Role="EventoUsuarioHorario">
+              <PropertyRef Name="Hour_17" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EventoUsuarioHorario_Disponibilidad18">
+          <End Type="KATHIECentralModel.Disponibilidad" Role="Disponibilidad" Multiplicity="1" />
+          <End Type="KATHIECentralModel.EventoUsuarioHorario" Role="EventoUsuarioHorario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Disponibilidad">
+              <PropertyRef Name="IDDisponibilidad" />
+            </Principal>
+            <Dependent Role="EventoUsuarioHorario">
+              <PropertyRef Name="Hour_18" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EventoUsuarioHorario_Disponibilidad19">
+          <End Type="KATHIECentralModel.Disponibilidad" Role="Disponibilidad" Multiplicity="1" />
+          <End Type="KATHIECentralModel.EventoUsuarioHorario" Role="EventoUsuarioHorario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Disponibilidad">
+              <PropertyRef Name="IDDisponibilidad" />
+            </Principal>
+            <Dependent Role="EventoUsuarioHorario">
+              <PropertyRef Name="Hour_19" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EventoUsuarioHorario_Disponibilidad2">
+          <End Type="KATHIECentralModel.Disponibilidad" Role="Disponibilidad" Multiplicity="1" />
+          <End Type="KATHIECentralModel.EventoUsuarioHorario" Role="EventoUsuarioHorario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Disponibilidad">
+              <PropertyRef Name="IDDisponibilidad" />
+            </Principal>
+            <Dependent Role="EventoUsuarioHorario">
+              <PropertyRef Name="Hour_2" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EventoUsuarioHorario_Disponibilidad20">
+          <End Type="KATHIECentralModel.Disponibilidad" Role="Disponibilidad" Multiplicity="1" />
+          <End Type="KATHIECentralModel.EventoUsuarioHorario" Role="EventoUsuarioHorario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Disponibilidad">
+              <PropertyRef Name="IDDisponibilidad" />
+            </Principal>
+            <Dependent Role="EventoUsuarioHorario">
+              <PropertyRef Name="Hour_20" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EventoUsuarioHorario_Disponibilidad21">
+          <End Type="KATHIECentralModel.Disponibilidad" Role="Disponibilidad" Multiplicity="1" />
+          <End Type="KATHIECentralModel.EventoUsuarioHorario" Role="EventoUsuarioHorario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Disponibilidad">
+              <PropertyRef Name="IDDisponibilidad" />
+            </Principal>
+            <Dependent Role="EventoUsuarioHorario">
+              <PropertyRef Name="Hour_21" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EventoUsuarioHorario_Disponibilidad22">
+          <End Type="KATHIECentralModel.Disponibilidad" Role="Disponibilidad" Multiplicity="1" />
+          <End Type="KATHIECentralModel.EventoUsuarioHorario" Role="EventoUsuarioHorario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Disponibilidad">
+              <PropertyRef Name="IDDisponibilidad" />
+            </Principal>
+            <Dependent Role="EventoUsuarioHorario">
+              <PropertyRef Name="Hour_22" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EventoUsuarioHorario_Disponibilidad23">
+          <End Type="KATHIECentralModel.Disponibilidad" Role="Disponibilidad" Multiplicity="1" />
+          <End Type="KATHIECentralModel.EventoUsuarioHorario" Role="EventoUsuarioHorario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Disponibilidad">
+              <PropertyRef Name="IDDisponibilidad" />
+            </Principal>
+            <Dependent Role="EventoUsuarioHorario">
+              <PropertyRef Name="Hour_23" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EventoUsuarioHorario_Disponibilidad24">
+          <End Type="KATHIECentralModel.Disponibilidad" Role="Disponibilidad" Multiplicity="1" />
+          <End Type="KATHIECentralModel.EventoUsuarioHorario" Role="EventoUsuarioHorario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Disponibilidad">
+              <PropertyRef Name="IDDisponibilidad" />
+            </Principal>
+            <Dependent Role="EventoUsuarioHorario">
+              <PropertyRef Name="Hour_24" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EventoUsuarioHorario_Disponibilidad3">
+          <End Type="KATHIECentralModel.Disponibilidad" Role="Disponibilidad" Multiplicity="1" />
+          <End Type="KATHIECentralModel.EventoUsuarioHorario" Role="EventoUsuarioHorario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Disponibilidad">
+              <PropertyRef Name="IDDisponibilidad" />
+            </Principal>
+            <Dependent Role="EventoUsuarioHorario">
+              <PropertyRef Name="Hour_3" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EventoUsuarioHorario_Disponibilidad4">
+          <End Type="KATHIECentralModel.Disponibilidad" Role="Disponibilidad" Multiplicity="1" />
+          <End Type="KATHIECentralModel.EventoUsuarioHorario" Role="EventoUsuarioHorario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Disponibilidad">
+              <PropertyRef Name="IDDisponibilidad" />
+            </Principal>
+            <Dependent Role="EventoUsuarioHorario">
+              <PropertyRef Name="Hour_4" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EventoUsuarioHorario_Disponibilidad5">
+          <End Type="KATHIECentralModel.Disponibilidad" Role="Disponibilidad" Multiplicity="1" />
+          <End Type="KATHIECentralModel.EventoUsuarioHorario" Role="EventoUsuarioHorario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Disponibilidad">
+              <PropertyRef Name="IDDisponibilidad" />
+            </Principal>
+            <Dependent Role="EventoUsuarioHorario">
+              <PropertyRef Name="Hour_5" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EventoUsuarioHorario_Disponibilidad6">
+          <End Type="KATHIECentralModel.Disponibilidad" Role="Disponibilidad" Multiplicity="1" />
+          <End Type="KATHIECentralModel.EventoUsuarioHorario" Role="EventoUsuarioHorario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Disponibilidad">
+              <PropertyRef Name="IDDisponibilidad" />
+            </Principal>
+            <Dependent Role="EventoUsuarioHorario">
+              <PropertyRef Name="Hour_6" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EventoUsuarioHorario_Disponibilidad7">
+          <End Type="KATHIECentralModel.Disponibilidad" Role="Disponibilidad" Multiplicity="1" />
+          <End Type="KATHIECentralModel.EventoUsuarioHorario" Role="EventoUsuarioHorario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Disponibilidad">
+              <PropertyRef Name="IDDisponibilidad" />
+            </Principal>
+            <Dependent Role="EventoUsuarioHorario">
+              <PropertyRef Name="Hour_7" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EventoUsuarioHorario_Disponibilidad8">
+          <End Type="KATHIECentralModel.Disponibilidad" Role="Disponibilidad" Multiplicity="1" />
+          <End Type="KATHIECentralModel.EventoUsuarioHorario" Role="EventoUsuarioHorario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Disponibilidad">
+              <PropertyRef Name="IDDisponibilidad" />
+            </Principal>
+            <Dependent Role="EventoUsuarioHorario">
+              <PropertyRef Name="Hour_8" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EventoUsuarioHorario_Disponibilidad9">
+          <End Type="KATHIECentralModel.Disponibilidad" Role="Disponibilidad" Multiplicity="1" />
+          <End Type="KATHIECentralModel.EventoUsuarioHorario" Role="EventoUsuarioHorario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Disponibilidad">
+              <PropertyRef Name="IDDisponibilidad" />
+            </Principal>
+            <Dependent Role="EventoUsuarioHorario">
+              <PropertyRef Name="Hour_9" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsuarioHorario_Disponibilidad1">
+          <End Type="KATHIECentralModel.Disponibilidad" Role="Disponibilidad" Multiplicity="1" />
+          <End Type="KATHIECentralModel.UsuarioHorario" Role="UsuarioHorario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Disponibilidad">
+              <PropertyRef Name="IDDisponibilidad" />
+            </Principal>
+            <Dependent Role="UsuarioHorario">
+              <PropertyRef Name="Hour_1" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsuarioHorario_Disponibilidad10">
+          <End Type="KATHIECentralModel.Disponibilidad" Role="Disponibilidad" Multiplicity="1" />
+          <End Type="KATHIECentralModel.UsuarioHorario" Role="UsuarioHorario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Disponibilidad">
+              <PropertyRef Name="IDDisponibilidad" />
+            </Principal>
+            <Dependent Role="UsuarioHorario">
+              <PropertyRef Name="Hour_10" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsuarioHorario_Disponibilidad11">
+          <End Type="KATHIECentralModel.Disponibilidad" Role="Disponibilidad" Multiplicity="1" />
+          <End Type="KATHIECentralModel.UsuarioHorario" Role="UsuarioHorario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Disponibilidad">
+              <PropertyRef Name="IDDisponibilidad" />
+            </Principal>
+            <Dependent Role="UsuarioHorario">
+              <PropertyRef Name="Hour_11" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsuarioHorario_Disponibilidad12">
+          <End Type="KATHIECentralModel.Disponibilidad" Role="Disponibilidad" Multiplicity="1" />
+          <End Type="KATHIECentralModel.UsuarioHorario" Role="UsuarioHorario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Disponibilidad">
+              <PropertyRef Name="IDDisponibilidad" />
+            </Principal>
+            <Dependent Role="UsuarioHorario">
+              <PropertyRef Name="Hour_12" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsuarioHorario_Disponibilidad13">
+          <End Type="KATHIECentralModel.Disponibilidad" Role="Disponibilidad" Multiplicity="1" />
+          <End Type="KATHIECentralModel.UsuarioHorario" Role="UsuarioHorario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Disponibilidad">
+              <PropertyRef Name="IDDisponibilidad" />
+            </Principal>
+            <Dependent Role="UsuarioHorario">
+              <PropertyRef Name="Hour_13" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsuarioHorario_Disponibilidad14">
+          <End Type="KATHIECentralModel.Disponibilidad" Role="Disponibilidad" Multiplicity="1" />
+          <End Type="KATHIECentralModel.UsuarioHorario" Role="UsuarioHorario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Disponibilidad">
+              <PropertyRef Name="IDDisponibilidad" />
+            </Principal>
+            <Dependent Role="UsuarioHorario">
+              <PropertyRef Name="Hour_14" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsuarioHorario_Disponibilidad15">
+          <End Type="KATHIECentralModel.Disponibilidad" Role="Disponibilidad" Multiplicity="1" />
+          <End Type="KATHIECentralModel.UsuarioHorario" Role="UsuarioHorario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Disponibilidad">
+              <PropertyRef Name="IDDisponibilidad" />
+            </Principal>
+            <Dependent Role="UsuarioHorario">
+              <PropertyRef Name="Hour_15" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsuarioHorario_Disponibilidad16">
+          <End Type="KATHIECentralModel.Disponibilidad" Role="Disponibilidad" Multiplicity="1" />
+          <End Type="KATHIECentralModel.UsuarioHorario" Role="UsuarioHorario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Disponibilidad">
+              <PropertyRef Name="IDDisponibilidad" />
+            </Principal>
+            <Dependent Role="UsuarioHorario">
+              <PropertyRef Name="Hour_16" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsuarioHorario_Disponibilidad17">
+          <End Type="KATHIECentralModel.Disponibilidad" Role="Disponibilidad" Multiplicity="1" />
+          <End Type="KATHIECentralModel.UsuarioHorario" Role="UsuarioHorario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Disponibilidad">
+              <PropertyRef Name="IDDisponibilidad" />
+            </Principal>
+            <Dependent Role="UsuarioHorario">
+              <PropertyRef Name="Hour_17" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsuarioHorario_Disponibilidad18">
+          <End Type="KATHIECentralModel.Disponibilidad" Role="Disponibilidad" Multiplicity="1" />
+          <End Type="KATHIECentralModel.UsuarioHorario" Role="UsuarioHorario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Disponibilidad">
+              <PropertyRef Name="IDDisponibilidad" />
+            </Principal>
+            <Dependent Role="UsuarioHorario">
+              <PropertyRef Name="Hour_18" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsuarioHorario_Disponibilidad19">
+          <End Type="KATHIECentralModel.Disponibilidad" Role="Disponibilidad" Multiplicity="1" />
+          <End Type="KATHIECentralModel.UsuarioHorario" Role="UsuarioHorario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Disponibilidad">
+              <PropertyRef Name="IDDisponibilidad" />
+            </Principal>
+            <Dependent Role="UsuarioHorario">
+              <PropertyRef Name="Hour_19" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsuarioHorario_Disponibilidad2">
+          <End Type="KATHIECentralModel.Disponibilidad" Role="Disponibilidad" Multiplicity="1" />
+          <End Type="KATHIECentralModel.UsuarioHorario" Role="UsuarioHorario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Disponibilidad">
+              <PropertyRef Name="IDDisponibilidad" />
+            </Principal>
+            <Dependent Role="UsuarioHorario">
+              <PropertyRef Name="Hour_2" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsuarioHorario_Disponibilidad20">
+          <End Type="KATHIECentralModel.Disponibilidad" Role="Disponibilidad" Multiplicity="1" />
+          <End Type="KATHIECentralModel.UsuarioHorario" Role="UsuarioHorario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Disponibilidad">
+              <PropertyRef Name="IDDisponibilidad" />
+            </Principal>
+            <Dependent Role="UsuarioHorario">
+              <PropertyRef Name="Hour_20" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsuarioHorario_Disponibilidad21">
+          <End Type="KATHIECentralModel.Disponibilidad" Role="Disponibilidad" Multiplicity="1" />
+          <End Type="KATHIECentralModel.UsuarioHorario" Role="UsuarioHorario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Disponibilidad">
+              <PropertyRef Name="IDDisponibilidad" />
+            </Principal>
+            <Dependent Role="UsuarioHorario">
+              <PropertyRef Name="Hour_21" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsuarioHorario_Disponibilidad22">
+          <End Type="KATHIECentralModel.Disponibilidad" Role="Disponibilidad" Multiplicity="1" />
+          <End Type="KATHIECentralModel.UsuarioHorario" Role="UsuarioHorario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Disponibilidad">
+              <PropertyRef Name="IDDisponibilidad" />
+            </Principal>
+            <Dependent Role="UsuarioHorario">
+              <PropertyRef Name="Hour_22" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsuarioHorario_Disponibilidad23">
+          <End Type="KATHIECentralModel.Disponibilidad" Role="Disponibilidad" Multiplicity="1" />
+          <End Type="KATHIECentralModel.UsuarioHorario" Role="UsuarioHorario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Disponibilidad">
+              <PropertyRef Name="IDDisponibilidad" />
+            </Principal>
+            <Dependent Role="UsuarioHorario">
+              <PropertyRef Name="Hour_23" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsuarioHorario_Disponibilidad24">
+          <End Type="KATHIECentralModel.Disponibilidad" Role="Disponibilidad" Multiplicity="1" />
+          <End Type="KATHIECentralModel.UsuarioHorario" Role="UsuarioHorario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Disponibilidad">
+              <PropertyRef Name="IDDisponibilidad" />
+            </Principal>
+            <Dependent Role="UsuarioHorario">
+              <PropertyRef Name="Hour_24" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsuarioHorario_Disponibilidad3">
+          <End Type="KATHIECentralModel.Disponibilidad" Role="Disponibilidad" Multiplicity="1" />
+          <End Type="KATHIECentralModel.UsuarioHorario" Role="UsuarioHorario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Disponibilidad">
+              <PropertyRef Name="IDDisponibilidad" />
+            </Principal>
+            <Dependent Role="UsuarioHorario">
+              <PropertyRef Name="Hour_3" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsuarioHorario_Disponibilidad4">
+          <End Type="KATHIECentralModel.Disponibilidad" Role="Disponibilidad" Multiplicity="1" />
+          <End Type="KATHIECentralModel.UsuarioHorario" Role="UsuarioHorario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Disponibilidad">
+              <PropertyRef Name="IDDisponibilidad" />
+            </Principal>
+            <Dependent Role="UsuarioHorario">
+              <PropertyRef Name="Hour_4" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsuarioHorario_Disponibilidad5">
+          <End Type="KATHIECentralModel.Disponibilidad" Role="Disponibilidad" Multiplicity="1" />
+          <End Type="KATHIECentralModel.UsuarioHorario" Role="UsuarioHorario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Disponibilidad">
+              <PropertyRef Name="IDDisponibilidad" />
+            </Principal>
+            <Dependent Role="UsuarioHorario">
+              <PropertyRef Name="Hour_5" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsuarioHorario_Disponibilidad6">
+          <End Type="KATHIECentralModel.Disponibilidad" Role="Disponibilidad" Multiplicity="1" />
+          <End Type="KATHIECentralModel.UsuarioHorario" Role="UsuarioHorario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Disponibilidad">
+              <PropertyRef Name="IDDisponibilidad" />
+            </Principal>
+            <Dependent Role="UsuarioHorario">
+              <PropertyRef Name="Hour_6" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsuarioHorario_Disponibilidad7">
+          <End Type="KATHIECentralModel.Disponibilidad" Role="Disponibilidad" Multiplicity="1" />
+          <End Type="KATHIECentralModel.UsuarioHorario" Role="UsuarioHorario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Disponibilidad">
+              <PropertyRef Name="IDDisponibilidad" />
+            </Principal>
+            <Dependent Role="UsuarioHorario">
+              <PropertyRef Name="Hour_7" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsuarioHorario_Disponibilidad8">
+          <End Type="KATHIECentralModel.Disponibilidad" Role="Disponibilidad" Multiplicity="1" />
+          <End Type="KATHIECentralModel.UsuarioHorario" Role="UsuarioHorario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Disponibilidad">
+              <PropertyRef Name="IDDisponibilidad" />
+            </Principal>
+            <Dependent Role="UsuarioHorario">
+              <PropertyRef Name="Hour_8" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsuarioHorario_Disponibilidad9">
+          <End Type="KATHIECentralModel.Disponibilidad" Role="Disponibilidad" Multiplicity="1" />
+          <End Type="KATHIECentralModel.UsuarioHorario" Role="UsuarioHorario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Disponibilidad">
+              <PropertyRef Name="IDDisponibilidad" />
+            </Principal>
+            <Dependent Role="UsuarioHorario">
+              <PropertyRef Name="Hour_9" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Evento_Estado">
+          <End Type="KATHIECentralModel.Estado" Role="Estado" Multiplicity="1" />
+          <End Type="KATHIECentralModel.Evento" Role="Evento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estado">
+              <PropertyRef Name="IDEstado" />
+            </Principal>
+            <Dependent Role="Evento">
+              <PropertyRef Name="IDEstado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Evento_Usuario">
+          <End Type="KATHIECentralModel.Usuario" Role="Usuario" Multiplicity="1" />
+          <End Type="KATHIECentralModel.Evento" Role="Evento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="Evento">
+              <PropertyRef Name="IDUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EventoUsuario_Evento">
+          <End Type="KATHIECentralModel.Evento" Role="Evento" Multiplicity="1" />
+          <End Type="KATHIECentralModel.EventoUsuario" Role="EventoUsuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Evento">
+              <PropertyRef Name="IDEvento" />
+            </Principal>
+            <Dependent Role="EventoUsuario">
+              <PropertyRef Name="IDEvento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EventoUsuario_Usuario">
+          <End Type="KATHIECentralModel.Usuario" Role="Usuario" Multiplicity="1" />
+          <End Type="KATHIECentralModel.EventoUsuario" Role="EventoUsuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="EventoUsuario">
+              <PropertyRef Name="IDUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EventoUsuarioHorario_EventoUsuario">
+          <End Type="KATHIECentralModel.EventoUsuario" Role="EventoUsuario" Multiplicity="1" />
+          <End Type="KATHIECentralModel.EventoUsuarioHorario" Role="EventoUsuarioHorario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EventoUsuario">
+              <PropertyRef Name="IDEventoUsuario" />
+            </Principal>
+            <Dependent Role="EventoUsuarioHorario">
+              <PropertyRef Name="IDEventoUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsuarioHorario_Usuario">
+          <End Type="KATHIECentralModel.Usuario" Role="Usuario" Multiplicity="1" />
+          <End Type="KATHIECentralModel.UsuarioHorario" Role="UsuarioHorario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="UsuarioHorario">
+              <PropertyRef Name="IDUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="KATHIECentralModelStoreContainer" CdmEntityContainer="KATHIECentralEntities">
+          <EntitySetMapping Name="Dias">
+            <EntityTypeMapping TypeName="KATHIECentralModel.Dia">
+              <MappingFragment StoreEntitySet="Dia">
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="IDDia" ColumnName="IDDia" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Disponibilidads">
+            <EntityTypeMapping TypeName="KATHIECentralModel.Disponibilidad">
+              <MappingFragment StoreEntitySet="Disponibilidad">
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="IDDisponibilidad" ColumnName="IDDisponibilidad" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Estadoes">
+            <EntityTypeMapping TypeName="KATHIECentralModel.Estado">
+              <MappingFragment StoreEntitySet="Estado">
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="IDEstado" ColumnName="IDEstado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Eventoes">
+            <EntityTypeMapping TypeName="KATHIECentralModel.Evento">
+              <MappingFragment StoreEntitySet="Evento">
+                <ScalarProperty Name="IDUsuario" ColumnName="IDUsuario" />
+                <ScalarProperty Name="IDEstado" ColumnName="IDEstado" />
+                <ScalarProperty Name="FechaHasta" ColumnName="FechaHasta" />
+                <ScalarProperty Name="FechaDesde" ColumnName="FechaDesde" />
+                <ScalarProperty Name="Comentarios" ColumnName="Comentarios" />
+                <ScalarProperty Name="Titulo" ColumnName="Titulo" />
+                <ScalarProperty Name="IDEvento" ColumnName="IDEvento" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EventoUsuarios">
+            <EntityTypeMapping TypeName="KATHIECentralModel.EventoUsuario">
+              <MappingFragment StoreEntitySet="EventoUsuario">
+                <ScalarProperty Name="IDUsuario" ColumnName="IDUsuario" />
+                <ScalarProperty Name="IDEvento" ColumnName="IDEvento" />
+                <ScalarProperty Name="IDEventoUsuario" ColumnName="IDEventoUsuario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EventoUsuarioHorarios">
+            <EntityTypeMapping TypeName="KATHIECentralModel.EventoUsuarioHorario">
+              <MappingFragment StoreEntitySet="EventoUsuarioHorario">
+                <ScalarProperty Name="Hour_24" ColumnName="Hour_24" />
+                <ScalarProperty Name="Hour_23" ColumnName="Hour_23" />
+                <ScalarProperty Name="Hour_22" ColumnName="Hour_22" />
+                <ScalarProperty Name="Hour_21" ColumnName="Hour_21" />
+                <ScalarProperty Name="Hour_20" ColumnName="Hour_20" />
+                <ScalarProperty Name="Hour_19" ColumnName="Hour_19" />
+                <ScalarProperty Name="Hour_18" ColumnName="Hour_18" />
+                <ScalarProperty Name="Hour_17" ColumnName="Hour_17" />
+                <ScalarProperty Name="Hour_16" ColumnName="Hour_16" />
+                <ScalarProperty Name="Hour_15" ColumnName="Hour_15" />
+                <ScalarProperty Name="Hour_14" ColumnName="Hour_14" />
+                <ScalarProperty Name="Hour_13" ColumnName="Hour_13" />
+                <ScalarProperty Name="Hour_12" ColumnName="Hour_12" />
+                <ScalarProperty Name="Hour_11" ColumnName="Hour_11" />
+                <ScalarProperty Name="Hour_10" ColumnName="Hour_10" />
+                <ScalarProperty Name="Hour_9" ColumnName="Hour_9" />
+                <ScalarProperty Name="Hour_8" ColumnName="Hour_8" />
+                <ScalarProperty Name="Hour_7" ColumnName="Hour_7" />
+                <ScalarProperty Name="Hour_6" ColumnName="Hour_6" />
+                <ScalarProperty Name="Hour_5" ColumnName="Hour_5" />
+                <ScalarProperty Name="Hour_4" ColumnName="Hour_4" />
+                <ScalarProperty Name="Hour_3" ColumnName="Hour_3" />
+                <ScalarProperty Name="Hour_2" ColumnName="Hour_2" />
+                <ScalarProperty Name="Hour_1" ColumnName="Hour_1" />
+                <ScalarProperty Name="Dia" ColumnName="Dia" />
+                <ScalarProperty Name="IDEventoUsuario" ColumnName="IDEventoUsuario" />
+                <ScalarProperty Name="IDEventoUsuarioHorario" ColumnName="IDEventoUsuarioHorario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Usuarios">
+            <EntityTypeMapping TypeName="KATHIECentralModel.Usuario">
+              <MappingFragment StoreEntitySet="Usuario">
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="IDUsuario" ColumnName="IDUsuario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UsuarioHorarios">
+            <EntityTypeMapping TypeName="KATHIECentralModel.UsuarioHorario">
+              <MappingFragment StoreEntitySet="UsuarioHorario">
+                <ScalarProperty Name="Hour_24" ColumnName="Hour_24" />
+                <ScalarProperty Name="Hour_23" ColumnName="Hour_23" />
+                <ScalarProperty Name="Hour_22" ColumnName="Hour_22" />
+                <ScalarProperty Name="Hour_21" ColumnName="Hour_21" />
+                <ScalarProperty Name="Hour_20" ColumnName="Hour_20" />
+                <ScalarProperty Name="Hour_19" ColumnName="Hour_19" />
+                <ScalarProperty Name="Hour_18" ColumnName="Hour_18" />
+                <ScalarProperty Name="Hour_17" ColumnName="Hour_17" />
+                <ScalarProperty Name="Hour_16" ColumnName="Hour_16" />
+                <ScalarProperty Name="Hour_15" ColumnName="Hour_15" />
+                <ScalarProperty Name="Hour_14" ColumnName="Hour_14" />
+                <ScalarProperty Name="Hour_13" ColumnName="Hour_13" />
+                <ScalarProperty Name="Hour_12" ColumnName="Hour_12" />
+                <ScalarProperty Name="Hour_11" ColumnName="Hour_11" />
+                <ScalarProperty Name="Hour_10" ColumnName="Hour_10" />
+                <ScalarProperty Name="Hour_9" ColumnName="Hour_9" />
+                <ScalarProperty Name="Hour_8" ColumnName="Hour_8" />
+                <ScalarProperty Name="Hour_7" ColumnName="Hour_7" />
+                <ScalarProperty Name="Hour_6" ColumnName="Hour_6" />
+                <ScalarProperty Name="Hour_5" ColumnName="Hour_5" />
+                <ScalarProperty Name="Hour_4" ColumnName="Hour_4" />
+                <ScalarProperty Name="Hour_3" ColumnName="Hour_3" />
+                <ScalarProperty Name="Hour_2" ColumnName="Hour_2" />
+                <ScalarProperty Name="Hour_1" ColumnName="Hour_1" />
+                <ScalarProperty Name="IDDia" ColumnName="IDDia" />
+                <ScalarProperty Name="IDUsuario" ColumnName="IDUsuario" />
+                <ScalarProperty Name="IDUsuarioHorario" ColumnName="IDUsuarioHorario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

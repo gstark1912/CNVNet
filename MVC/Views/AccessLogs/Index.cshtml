@@ -1,0 +1,17 @@
+﻿@{
+    ViewBag.Title = "Logs de Acceso";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<h1>@ViewBag.Title</h1>
+<div class="row">
+    <div class="col-md-8">
+        <p>
+            @Html.ActionLink("UsersAccesses", "ViewUsersAccess")
+        </p>
+        <p>
+            @Html.ActionLink("UsersNoAccesses", "ViewUsersNoAccess")
+        </p>
+    </div>
+</div>

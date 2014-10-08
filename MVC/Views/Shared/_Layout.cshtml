@@ -1,0 +1,60 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title - MVC</title>
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jquery-ui")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/mobydick")
+    @Scripts.Render("~/bundles/Plugins")
+    @Styles.Render("~/Content/css")
+
+</head>
+<body>
+
+    <header>
+        <div class="head-content-wrapper">
+            <nav class="nav_horizontal">
+                <ul>
+
+                    @Html.Action("NavigationMenu", "Menu", new { Area = "Security" })
+                    <li>
+                        @Html.Partial("_LoginPartial")
+                    </li>
+                </ul>
+            </nav>
+            <p id="brand-logo"><span></span>HORIZON@*<img src=@Url.Content("~/Content/Images/logo.png") alt="Logo" />*@</p>
+        </div>
+    </header>
+
+
+    <div id="body_main_wrapper">
+        @*<ul class="navigation-guide">
+                <li><a href="javascript:void(0)">Home</a></li>
+            </ul>*@
+        @RenderBody()
+    </div>
+
+    <footer>
+        <div class="footer_content_wrapper">
+            <p>MVC &copy; 2014</p>
+            @RenderSection("scripts", required: false)
+        </div>
+    </footer>
+</body>
+</html>
+<div style="display:none">
+    <div id="ProgressDialog" style="text-align: center; padding: 50px;">
+        <img src="@Url.Content("~/Content/ajax-loader.gif")" width="128" height="15" alt="Loading" />
+    </div>
+</div>
+
+<script>
+    function AppURL(url) {
+        return '@Url.Content("~/")' + url;
+    }
+</script>

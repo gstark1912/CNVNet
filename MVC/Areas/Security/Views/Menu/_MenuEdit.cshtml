@@ -1,0 +1,54 @@
+﻿@model MVC.Areas.Security.Models.MenuViewModel
+
+
+<script>
+    $(document).ready(function () {
+        reInitializeValidations();
+
+    })
+
+    function reInitializeValidations() {
+
+        var currForm = $("#AddItemMenu");
+        currForm.removeData("validator");
+        currForm.removeData("unobtrusiveValidation");
+        $.validator.unobtrusive.parse(currForm);
+    };
+
+    function getMenuData() {
+        var form = $("#AddItemMenu");
+        if (form.valid())
+            return form.serializeJSON();
+        else
+            return false;
+    }
+
+</script>
+<br />
+@using (Html.BeginForm("", "", FormMethod.Post, new { id = "AddItemMenu" }))
+{
+    <div class="row">
+        <div class="col-12">
+
+            @Html.LabelFor(m => m.Parent)
+            @Html.TextBoxFor(m => m.Parent, new { disabled = "disabled" })
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            @Html.LabelFor(m => m.Name)
+            @Html.TextBoxFor(m => m.Name)
+            @Html.ValidationMessageFor(m => m.Name)
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            @Html.LabelFor(m => m.Action)
+            @Html.TextBoxFor(m => m.Action)
+            @Html.ValidationMessageFor(m => m.Action)
+        </div>
+    </div>
+
+    @Html.HiddenFor(m => m.Id)
+    @Html.HiddenFor(m => m.IdParent)
+}

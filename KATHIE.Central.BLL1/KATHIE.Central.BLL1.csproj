@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{E78B1A13-668E-483C-84D1-63C42ED5214A}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>KATHIE.Central.BLL1</RootNamespace>
+    <AssemblyName>KATHIE.Central.BLL1</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Class1.cs" />
+    <Compile Include="DTOAdapters\AdapterMedicalPropertyValidationConfiguration.cs" />
+    <Compile Include="DTOAdapters\AdapterStageQuestionnaireForGrid.cs" />
+    <Compile Include="DTO\DTOMedicalPropertyForGrid.cs" />
+    <Compile Include="DTO\DTOPathologyStateCondition.cs" />
+    <Compile Include="DTO\DTOStageQuestionnaireForGrid.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\DrugService.cs" />
+    <Compile Include="Services\MedicalPropertyService.cs" />
+    <Compile Include="Services\MedicinesService.cs" />
+    <Compile Include="Services\ServiceAnswer.cs" />
+    <Compile Include="Services\ServiceClient.cs" />
+    <Compile Include="Services\ServiceMedicalProperties.cs" />
+    <Compile Include="Services\ServicePathology.cs" />
+    <Compile Include="Services\ServicePathologyLevel.cs" />
+    <Compile Include="Services\ServicePathologyState.cs" />
+    <Compile Include="Services\ServicePathologyStateCondition.cs" />
+    <Compile Include="Services\ServiceQuestionnaireFeaturesPX.cs" />
+    <Compile Include="Services\ServiceQuestion.cs" />
+    <Compile Include="Services\ServiceQuestionnaire.cs" />
+    <Compile Include="Services\ServiceFeaturePXRange.cs" />
+    <Compile Include="Services\ServiceStageQuestionnaire.cs" />
+    <Compile Include="Services\PresentationService.cs" />
+    <Compile Include="Services\AdminViaService.cs" />
+    <Compile Include="Services\TherapeuticGroupService.cs" />
+    <Compile Include="Services\TherapeuticActionService.cs" />
+    <Compile Include="Services\PackageTypeService.cs" />
+    <Compile Include="Services\UnitTypeService .cs" />
+    <Compile Include="Services\LaboratoryService.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\KATHIE.Central.DAL\KATHIE.Central.DAL.csproj">
+      <Project>{8d36029b-4617-4903-9dfa-f6199ed0a46e}</Project>
+      <Name>KATHIE.Central.DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\KATHIE.Central.Domain\KATHIE.Central.Domain.csproj">
+      <Project>{04703405-fbdf-42d1-99da-de44b197ee20}</Project>
+      <Name>KATHIE.Central.Domain</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,269 @@
+﻿@model MVC.Areas.Security.Models.MenuListViewModel
+@{
+    ViewBag.Title = "Administración de Menús";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script>
+    var hasDataChanged = false;
+    var selNode = null;
+
+    $(document).ready(function () {
+        $(window).bind('beforeunload', confirmLeave);
+        loadTree(@Html.Raw(Json.Encode(Model.dataTree)));
+    });
+
+    function confirmLeave() {
+        if (hasDataChanged) {
+            return "Se perderán los cambios realizados, ¿Desea continuar?";
+        }
+    }
+
+    function refreshTree() {
+        ajaxCall({
+            url: '@Url.Action("RefreshTreeData")',
+            data: {},
+            success: function (data) {
+                hasDataChanged = false;
+                $('#tree').empty();
+                loadTree(data);
+                selNode = null;
+                $("#tree").dynatree("getTree").reload();
+                $("#tree").dynatree("getRoot").visit(function (node) {
+                    node.expand(true);
+                });
+            }
+        });
+    }
+
+    function loadTree(data) {
+        var treeData = data;
+        $(function () {
+            $("#tree").dynatree({
+                checkbox: false,
+                selectMode: 2,
+                children: treeData,
+                onClick: function (node, event) {
+                    node.toggleSelect();
+                },
+                onFocus: function (node, event) {
+                    $("#descriptionContainer").text(node.data.menuDescription);
+                },
+                onKeydown: function (node, event) {
+                    if (event.which == 32) {
+                        node.toggleSelect();
+                        return false;
+                    }
+                },
+                onSelect: function (flag, dtnode) {
+                    selNode = dtnode.data.key;
+                    hasDataChanged = true;
+                },
+                cookieId: "dynatree-Cb3",
+                idPrefix: "dynatree-Cb3-",
+                dnd: {
+                    onDragStart: function (node) {
+                        return true;
+                    },
+                    autoExpandMS: 1000,
+                    preventVoidMoves: true, // Prevent dropping nodes 'before self', etc.
+                    onDragEnter: function (node, sourceNode) {
+                        return true;
+                    },
+                    onDragOver: function (node, sourceNode, hitMode) {
+                        if (node.isDescendantOf(sourceNode)) {
+                            return false;
+                        }
+                    },
+                    onDrop: function (node, sourceNode, hitMode, ui, draggable) {
+                        sourceNode.move(node, hitMode);
+
+                        if (hitMode == "over")
+                            node.expand(true);
+
+                        hasDataChanged = true;
+                        sourceNode.expand(true);
+                    }
+                }
+            });
+            $("#tree").dynatree("getRoot").visit(function (node) {
+                node.expand(true);
+            });
+        });
+    };
+
+
+    function getChildrenStructure(treeData) {
+        var struct = new Array();
+        if (treeData != null && treeData.length > 0) {
+            for (var i = 0; i < treeData.length; i++) {
+                struct[i] = getChildStructure(treeData[i]);
+            }
+        }
+        return struct;
+    }
+
+    function getChildStructure(NodeData) {
+        var rv = new Object();
+
+        rv.key = NodeData.data.key;
+        rv.title = NodeData.data.title;
+        rv.children = getChildrenStructure(NodeData.childList);
+
+        return rv;
+    }
+
+
+    function cancel() {
+        history.go(-1);
+    };
+
+    function saveConfiguration() {
+        var treeData2 = $("#tree").dynatree("getTree").getRoot().childList;
+        var treeData = getChildrenStructure(treeData2);
+        treeData = JSON.stringify(treeData);
+
+        ajaxCall({
+            url: '@Url.Action("UpdateMenusHierarchy")',
+            data: treeData,
+            contentType: "application/json; charset=utf-8",
+            success: function (data) {
+                if (data == true) {
+                    hasDataChanged = false;
+                    location.href = '@Url.Action("Index", "Home", new { Area=""})';
+                }
+            }
+        });
+    };
+
+    function insertMenu() {
+        $.MDmessage({
+            messageType: "popup",
+            name: "insertMenu_popup",
+            btnok: false,
+            title: "Nuevo Menú",
+            width: 30,
+            content: '@Url.Action("_MenuEdit", "Menu")?idParent=' + selNode,
+            buttons: {
+                "Cancelar": function () { closeMessage("insertMenu_popup") },
+                "Guardar": function () {
+                    var form = getMenuData();
+                    if (form != false) {
+                        ajaxCall({
+                            data: form,
+                            url: '@Url.Action("InsertMenu")',
+                            success: function (data) {
+                                if (data == true) {
+                                    closeMessage("insertMenu_popup");
+                                    refreshTree();
+                                }
+                            }
+                        });
+                    }
+                }
+            }
+        })
+    };
+
+    function updateMenu() {
+        if (selNode != null) {
+            $.MDmessage({
+                messageType: "popup",
+                name: "updateMenu_popup",
+                btnok: false,
+                title: "Editar Menú",
+                width: 30,
+                content: '@Url.Action("_MenuEdit", "Menu")?id=' + selNode,
+                buttons: {
+                    "Cancelar": function () { closeMessage("updateMenu_popup") },
+                    "Guardar": function () {
+                        var form = getMenuData();
+                        if (form != false) {
+                            ajaxCall({
+                                data: form,
+                                url: '@Url.Action("UpdateMenu")',
+                                success: function (data) {
+                                    if (data == true) {
+                                        closeMessage("updateMenu_popup");
+                                        refreshTree();
+                                    }
+                                }
+                            });
+                        }
+                    }
+                }
+            });
+        }
+        else {
+            ShowAlert("Seleccione el registro a editar");
+        }
+    };
+
+    function tryDeleteMenu() {
+        if (selNode != null && selNode != 0) {
+            ajaxCall({
+                url: '@Url.Action("CanDeleteMenu")?id=' + selNode,
+                data: {},
+                success: function (data) {
+                    if (data == true) deleteMenu(selNode);
+                }
+            });
+        }
+        else {
+            ShowAlert("Seleccione el registro a eliminar");
+        }
+    };
+
+    function deleteMenu(selectedNode) {
+        $.MDmessage({
+            name: "deleteMenu_popup",
+            btnok: false,
+            title: "Eliminar Menú",
+            width: 30,
+            message: '<p class="mdm_text">¿Desea eliminar el registro seleccionado?</p>',
+            buttons: {
+                "Cancelar": function () { closeMessage("deleteMenu_popup") },
+                "Eliminar": function () {
+                    ajaxCall({
+                        data: {},
+                        url: '@Url.Action("DeleteMenu")?id=' + selectedNode,
+                        success: function (data) {
+                            if (data == true) {
+                                closeMessage("deleteMenu_popup");
+                                refreshTree();
+                            }
+                        }
+                    });
+                }
+            }
+        });
+    };
+
+</script>
+
+<div class="row">
+    <div class="col-12">
+        <h1>@ViewBag.Title</h1>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12">
+        @using (Html.BeginForm("AssignMenues", "Roles", FormMethod.Post, new { enctype = "multipart/form-data", id = "formRoleActions" }))
+        {
+            <div class="trees" id="tree"></div>
+        }
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12">
+        @Html.ActionLink("Cerrar", "Index", "Home", new { Area = "" }, new { @class = "btn_secundario btn-right" })
+        <a class='btn_secundario btn-right' href="#" onclick="saveConfiguration(); return false;" id="btn_add">Guardar</a>
+
+        <a class='btn_secundario' href="#" onclick="insertMenu(); return false;" id="btn_add">Nuevo</a>
+        <a class='btn_secundario' href="#" onclick="updateMenu(); return false;" id="btn_add">Editar</a>
+        <a class='btn_secundario' href="#" onclick="tryDeleteMenu(); return false;" id=" btn_del">Eliminar</a>
+
+    </div>
+</div>

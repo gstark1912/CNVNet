@@ -1,0 +1,35 @@
+﻿@model MVC.Security.Models.HFXException
+
+<script>
+
+    function seeDetail() {
+        var display = $("#exdetails").css("display");
+        if (display === "none") {
+            $("#exmessage").text("Ocultar detalles");
+            $("#exdetails").scroll();
+            $("#exdetails").show("slow");
+        }
+        else {
+            $("#exmessage").text("Ver detalles");
+            $("#exdetails").hide("slow");
+        }
+    };
+
+</script>
+
+
+<form id="exceptionForm" style="padding-left:10px">
+
+    <h1>@Html.ValueFor(m => m.UserMessage)</h1>
+
+    @if (Model.ExMessage != "")
+    {
+        <h2>@Html.ValueFor(m => m.ExMessage)</h2>
+        <br />
+        <a id="exmessage" href="#" onclick="seeDetail();return false;">Ver Detalle</a>
+        <div id="exdetails" style="overflow-y: scroll; overflow-x: hidden; width: 100%; height: 100px;display:none;">
+            <br />
+            <h3>@Html.ValueFor(m => m.StackTrace)</h3>
+        </div>
+    }
+</form>

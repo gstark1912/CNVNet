@@ -1,0 +1,60 @@
+﻿@{
+    ViewBag.Title = "ViewUsersNoAccesses";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script>
+
+    $(document).ready(function () {
+        LoadGrid('@Url.Action("GetUsersNoAccess")');
+    });
+
+    function LoadGrid(urlAction) {
+        $('#jqgrid').jqGrid('GridUnload');
+        $("#jqgrid").jqGrid({
+            url: urlAction,
+            datatype: "json",
+            mtype: 'POST',
+            colNames: ['Id', 'Route', 'Date', 'UserName'],
+            colModel: [
+                { name: 'Id', index: 'Id', sortable: false, key: true, hidden: true, editable: true },
+                { name: "Route", index: "Route", width: 130, editable: true, editrules: { required: true } },
+                { name: "Date", index: "Date.Description", sortable: true, width: 130, editable: true, editrules: { required: true } },
+                { name: "UserName", index: "UserName", width: 130, sortable: true, editable: true, editrules: { required: true } }
+            ],
+            hidegrid: false,
+            rowNum: 10,
+            rowList: [10, 20, 30],
+            pager: jQuery('#pager'),
+            sortname: 'Id',
+            viewrecords: true,
+            sortorder: "asc",
+            caption: "UsersNoAccess",
+            autowidth: true,
+            height: 235
+        });
+
+        $('#jqgrid').jqGrid('navGrid', '#pager',
+                //options
+                { add: false, del: false, edit: false, search: false },
+                // add options
+                {}
+           );
+    };
+
+</script>
+<div class="row">
+    <div class="col-12">
+        <h1>@ViewBag.Title</h1>
+    </div>
+</div>
+<div class="row">
+    <div class="col-12">
+        <div id="divResults" style="padding-bottom: 10px">
+            <div id="grid" align="center">
+                <table id="jqgrid"></table>
+                <div id="pager">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,339 @@
+﻿@{
+    ViewBag.Title = "Administración de Usuarios";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script>
+
+    $(document).ready(function () {
+        btnRefreshGrid();
+    });
+
+    function loadGrid(filter) {
+        $('#jqgridUsers').jqGrid('GridUnload');
+        $("#jqgridUsers").jqGrid({
+            url: '@Url.Action("SearchUsers","UsersAdmin", new {Area="Security"})',
+            datatype: "json",
+            mtype: 'POST',
+            colNames: ['IDUser', 'Usuario', 'Nombre', 'Apellido', 'Correo Electrónico', 'Estado', 'IsLocked'],
+            colModel: [
+                { name: 'Id', index: 'Id', key: true, hidden: true },
+                { name: "UserName", index: "UserName" },
+                { name: "Name", index: "Name" },
+                { name: "LastName", index: "LastName" },
+                { name: "Email", index: "Email" },
+                { name: "State", index: "State", sortable: false },
+                { name: "Locked", index: "Locked", hidden: true }
+            ],
+            postData: {
+                desc: filter
+            },
+            loadComplete: function (data) {
+                ExecuteMessagesSuccess(data);
+            },
+            hidegrid: false,
+            rowNum: 10,
+            rowList: [10, 20, 30],
+            pager: jQuery('#pager'),
+            sortname: "Id",
+            viewrecords: true,
+            sortorder: "asc",
+            caption: " ",
+            width: "100%",
+            autowidth: true,
+        });
+
+        $('#jqgridUsers').jqGrid('navGrid', '#pager',
+                { add: false, del: false, edit: false, search: false },
+                {}
+        );
+    };
+
+    function lockUnlockUser() {
+        var rowId = $("#jqgridUsers").jqGrid('getGridParam', 'selrow');
+        if (rowId != null) {
+            var rowdata = $("#jqgridUsers").jqGrid("getRowData", rowId);
+            if (rowdata.Locked)
+                unlockUser(rowId);
+            else
+                lockUser(rowId);
+        }
+        else
+            ShowAlert("Seleccione el registro al cual bloquear / desbloquear cuenta");
+    };
+
+    function unlockUser(rowId) {
+        if (rowId != null) {
+            $.MDmessage({
+                messageType: "info",
+                name: "unlockUser_popup",
+                btnok: false,
+                message: '¿Está seguro que desea desbloquear la cuenta del usuario?.',
+                title: 'Desbloquear cuenta',
+                width: 30,
+                buttons: {
+                    "Cancelar": function () { closeMessage("unlockUser_popup") },
+                    "Desbloquear cuenta": function () {
+                        ajaxCall({
+                            url: '@Url.Action("UnlockUser", "UsersAdmin")?id=' + rowId,
+                            success: function (data) {
+                                if (data == true) {
+                                    closeMessage("unlockUser_popup");
+                                    btnRefreshGrid();
+                                }
+                            }
+                        });
+                    }
+                }
+            });
+        };
+    };
+
+    function lockUser(rowId) {
+        if (rowId != null) {
+            $.MDmessage({
+                messageType: "info",
+                name: "lockUser_popup",
+                btnok: false,
+                message: '¿Está seguro que desea bloquear la cuenta del usuario?.',
+                title: 'Bloquear cuenta',
+                width: 30,
+                buttons: {
+                    "Cancelar": function () { closeMessage("lockUser_popup") },
+                    "Bloquear cuenta": function () {
+                        ajaxCall({
+                            url: '@Url.Action("LockUser", "UsersAdmin")?id=' + rowId,
+                            success: function (data) {
+                                if (data == true) {
+                                    closeMessage("lockUser_popup");
+                                    btnRefreshGrid();
+                                }
+                            }
+                        });
+                    }
+                }
+            });
+        }
+    };
+
+
+    function insertUser() {
+        $.MDmessage({
+            messageType: "popup",
+            name: "insertUser_popup",
+            btnok: false,
+            title: "Nuevo Usuario",
+            width: 30,
+            content: '@Url.Action("_UserEdit", "UsersAdmin")',
+            buttons: {
+                "Cancelar": function () { closePopup(closeMessage, 'insertUser_popup'); },
+                "Guardar": function () {
+                    var form = getUserData();
+                    if (form != false) {
+                        ajaxCall({
+                            url: '@Url.Action("InsertUser")',
+                            data: form,
+                            success: function (data) {
+                                if (data == true) {
+                                    closeMessage("insertUser_popup");
+                                    btnRefreshGrid();
+                                }
+                            }
+                        });
+                    }
+                }
+            }
+        });
+    };
+
+    function updateUser() {
+        var rowId = $("#jqgridUsers").jqGrid('getGridParam', 'selrow');
+        if (rowId != null) {
+            var rowdata = $("#jqgridUsers").jqGrid("getRowData", rowId);
+            if (rowdata.Locked == true) {
+                ShowAlert("No se puede editar usuario porque la cuenta está bloqueada.");
+                return;
+            }
+            $.MDmessage({
+                messageType: "popup",
+                name: "updateUser_popup",
+                btnok: false,
+                title: "Editar Usuario",
+                width: 30,
+                content: '@Url.Action("_UserEdit", "UsersAdmin")?id=' + rowId,
+                buttons: {
+                    "Cancelar": function () { closePopup(closeMessage, 'updateUser_popup'); },
+                    "Guardar": function () {
+                        var form = getUserData();
+                        if (form != false) {
+                            ajaxCall({
+                                url: '@Url.Action("UpdateUser")',
+                                data: form,
+                                success: function (data) {
+                                    if (data == true) {
+                                        closeMessage("updateUser_popup");
+                                        btnRefreshGrid();
+                                    }
+                                }
+                            });
+                        }
+                    }
+                }
+            });
+        }
+        else
+            ShowAlert("Seleccione el registro a editar");
+    };
+
+    function deleteUser() {
+        var rowId = $("#jqgridUsers").jqGrid('getGridParam', 'selrow');
+        if (rowId != null) {
+            $.MDmessage({
+                messageType: "info",
+                name: "deleteUser_popup",
+                btnok: false,
+                message: '¿Desea eliminar el registro seleccionado?',
+                title: 'Eliminar Usuario',
+                width: 30,
+                buttons: {
+                    "Cancelar": function () { closeMessage("deleteUser_popup") },
+                    "Eliminar": function () {
+                        ajaxCall({
+                            url: '@Url.Action("DeleteUser")?id=' + rowId,
+                            data: {},
+                            success: function (data) {
+                                if (data == true) {
+                                    closeMessage("deleteUser_popup");
+                                    btnRefreshGrid();
+                                }
+                            }
+                        });
+                    }
+                }
+            });
+        }
+        else
+            ShowAlert("Seleccione el registro a eliminar");
+    };
+
+    function resetPassword() {
+        var rowId = $("#jqgridUsers").jqGrid('getGridParam', 'selrow');
+        if (rowId != null) {
+            var rowdata = $("#jqgridUsers").jqGrid("getRowData", rowId);
+            if (rowdata.Locked == true) {
+                ShowAlert("No se puede reiniciar la contraseña porque la cuenta está bloqueada.");
+                return;
+            }
+            $.MDmessage({
+                messageType: "info",
+                name: "resetUser_popup",
+                btnok: false,
+                message: '¿Desea reiniciar la contraseña del registro seleccionado?',
+                title: 'Reiniciar contraseña',
+                width: 30,
+                buttons: {
+                    "Cancelar": function () { closeMessage("resetUser_popup") },
+                    "Reiniciar contraseña": function () {
+                        ajaxCall({
+                            url: '@Url.Action("ResetPassword")?id=' + rowId,
+                            data: {},
+                            success: function (data) {
+                                if (data == true) {
+                                    closeMessage("resetUser_popup");
+                                    btnRefreshGrid();
+                                }
+                            }
+                        });
+                    }
+                }
+            });
+        }
+        else
+            ShowAlert("Seleccione el registro al cual reiniciar contraseña");
+    };
+
+    function assignRoles() {
+        var rowId = $("#jqgridUsers").jqGrid('getGridParam', 'selrow');
+        if (rowId != null) {
+            $.MDmessage({
+                messageType: "popup",
+                name: "assignRoles_popup",
+                btnok: false,
+                title: "Asignar a Roles",
+                width: 30,
+                content: '@Url.Action("_AssignRoles", "UsersAdmin")?id=' + rowId,
+                buttons: {
+                    "Cancelar": function () { closeMessage("assignRoles_popup") },
+                    "Guardar": function () {
+                        var form = getAssignedRoles();
+                        if (form != false) {
+                            ajaxCall({
+                                data: form,
+                                url: '@Url.Action("AssignRoles")',
+                                success: function (data) {
+                                    if (data == true) {
+                                        closeMessage("assignRoles_popup");
+                                        btnRefreshGrid();
+                                    }
+                                }
+                            });
+                        }
+                    }
+                }
+            });
+        }
+        else
+            ShowAlert("Seleccione el registro al cual asignar rol");
+    };
+
+    function btnLoadGrid() {
+        var filter = $('#txtDesc').val();
+        if (filter != "") {
+            loadGrid(filter);
+        }
+        else
+            ShowAlert("Ingrese parámetro de búsqueda.");
+    }
+
+    function btnRefreshGrid() {
+        $("#txtDesc").val('');
+        var filter = "";
+        loadGrid(filter);
+    }
+
+</script>
+<h1>@ViewBag.Title</h1>
+<br />
+<div class="row">
+    <div class="col-10">
+        @Html.Label("Nombre:")
+        @Html.TextBox("txtDesc")
+    </div>
+    <div class="col-1">
+        <br />
+        <button id="btnLoadGrid" onclick="btnLoadGrid()">Buscar</button>
+    </div>
+    <div class="col-1">
+        <br />
+        <button id="btnRefreshGrid" onclick="btnRefreshGrid()">Refrescar</button>
+    </div>
+</div>
+<div class="row">
+    <div class="col-12">
+        <div id="divResults" style="padding-bottom: 10px">
+            <div id="grid" align="center">
+                <table id="jqgridUsers"></table>
+                <div id="pager">
+                </div>
+            </div>
+        </div>
+
+        @Html.ActionLink("Cerrar", "Index", "Home", new { Area = "" }, new { @class = "btn_secundario btn-right" })
+        <a class='btn_secundario' href="javascript:insertUser()">Nuevo</a>
+        <a class='btn_secundario' href="javascript:updateUser()">Editar</a>
+        <a class='btn_secundario' href="javascript:deleteUser()">Eliminar</a>
+        <a class='btn_secundario' href="javascript:assignRoles()">Asignar Roles</a>
+        <a class='btn_secundario' href="javascript:resetPassword()">Reiniciar Contraseña</a>
+        <a class='btn_secundario' href="javascript:lockUnlockUser()">Bloquear/Desbloquear Cuenta</a>
+    </div>
+</div>

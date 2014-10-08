@@ -1,0 +1,115 @@
+﻿@model MVC.Areas.Security.Models.PermissionsViewModels
+@{
+    ViewBag.Title = "Asignación de Acciones a Rol";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script>
+    var hasDataChanged = false;
+    $(document).ready(function () {
+        $(window).bind('beforeunload', confirmLeave);
+        loadTree();
+    });
+
+    function confirmLeave() {
+        if (hasDataChanged) {
+            return "Se perderán los cambios realizados, ¿Desea continuar?";
+        }
+    }
+
+    function loadTree() {
+
+        var treeData = @Html.Raw(Json.Encode(Model.dataTree))
+
+        $(function () {
+            $("#tree").dynatree({
+                checkbox: true,
+                selectMode: 2,
+                children: treeData,
+                onDblClick: function (node, event) {
+                    node.toggleSelect();
+                },
+                onFocus: function (node, event) {
+                    $("#descriptionContainer").text(node.data.menuDescription);
+                    hasDataChanged = true;
+                },
+                onKeydown: function (node, event) {
+                    if (event.which == 32) {
+                        node.toggleSelect();
+                        return false;
+                    }
+                },
+                onSelect: function (flag, dtnode) {
+                    hasDataChanged = true;
+                    if (!flag) {
+                        dtnode.visit(function (childNode) {
+                            childNode.select(false);
+                        });
+                    }
+                    else {
+                        dtnode.parent.select(true);
+                    }
+                },
+                // The following options are only required, if we have more than one tree on one page:
+                //        initId: "treeData",
+                cookieId: "dynatree-Cb3",
+                idPrefix: "dynatree-Cb3-"
+            });
+            $("#tree").dynatree("getRoot").visit(function (node) {
+                node.expand(true);
+            });
+        });
+
+        $(".dynatree-node").click(function () {
+            hasDataChanged = true;
+        });
+    };
+
+    function cancel() {
+        history.go(-1);
+    };
+
+    function saveConfiguration() {
+        var SelectedKeys = $.map($("#tree").dynatree("getTree").getSelectedNodes(), function (node) {
+            return node.data.key;
+        });
+
+        $("#selectedKeys").val(JSON.stringify(SelectedKeys));
+        hasDataChanged = false;
+
+        var currForm = $("#formRoleActions");
+        var formobj = currForm.serializeJSON();
+
+        ajaxCall({
+            url: '@Url.Action("SaveAssignActions")',
+            data: formobj,
+            success: function (data) {
+                if (data == true)
+                    location.href = '@Url.Action("Index")';
+            }
+        });
+    };
+
+</script>
+<div class="row">
+    <div class="col-12">
+        <h1>@ViewBag.Title</h1>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12">
+        @using (Html.BeginForm("AssignMenues", "Roles", FormMethod.Post, new { id = "formRoleActions" }))
+        {
+            <div class="trees" id="tree"></div>
+            @Html.HiddenFor(m => m.Id)
+            @Html.HiddenFor(m => m.selectedKeys, new { id = "selectedKeys" })
+        }
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12">
+        <a class='button_ui' href="#" onclick="cancel(); return false;" id="btn_edit">Cerrar</a>
+        <a class='button_ui' href="#" onclick="saveConfiguration(); return false;" id="btn_add">Guardar</a>
+    </div>
+</div>

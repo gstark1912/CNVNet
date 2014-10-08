@@ -1,0 +1,16 @@
+﻿@model MVC.Models.HomeViewModel
+@{
+    ViewBag.Title = "Home Page";
+}
+
+
+<h1>@ViewBag.Title</h1>
+    <div class="row">
+        @Html.Partial("_LoginPartial")
+    </div>
+    <ul class="foreach_list">
+        @foreach (var item in Model.AdminNotes)
+        {
+            <li class="li-adminnotes">@item</li>
+        }
+    </ul>
